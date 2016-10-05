@@ -1,8 +1,9 @@
 package com.example;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,14 +12,11 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.swing.*;
-import java.io.File;
-
-
 
 @SpringBootApplication
 @ComponentScan("com.example")
-public class ExampleApplication extends JPanel {
+
+public class ExampleApplication extends SpringBootServletInitializer {
 
 	public static String ROOT = "upload-dir";
 
@@ -27,6 +25,10 @@ public class ExampleApplication extends JPanel {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
 	}
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return super.configure(builder);
+	}
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
@@ -37,4 +39,5 @@ public class ExampleApplication extends JPanel {
 			}
 		};
 	}
+
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4186046161">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="PostgreSQL - wso2@192.168.16.107" uuid="8648e9de-3e9b-412d-825b-e5862c7c35d4">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -12,6 +12,18 @@
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://192.168.16.233 :5432/city</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - active_city_db@localhost" uuid="48d64a48-96ea-49cd-bb45-812bc9fa6f79">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/active_city_db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - active_city@192.168.16.233" uuid="76e6c4dd-ed02-417b-b729-2db07e53cdfb">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://192.168.16.233:5432/active_city</jdbc-url>
     </data-source>
   </component>
 </project>

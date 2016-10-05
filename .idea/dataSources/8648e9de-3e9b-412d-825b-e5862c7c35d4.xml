@@ -1,0 +1,904 @@
+<dataSource name="PostgreSQL - wso2@192.168.16.107">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+    <database id="1" name="wso2">
+      <object-id>438974</object-id>
+      <visible>1</visible>
+    </database>
+    <database id="2" name="postgres">
+      <object-id>12036</object-id>
+    </database>
+    <database id="3" name="own_cloud">
+      <object-id>18309</object-id>
+    </database>
+    <database id="4" name="ghiseul_unic_old">
+      <object-id>18922</object-id>
+    </database>
+    <database id="5" name="ghiseul_unic_ong">
+      <object-id>21264</object-id>
+    </database>
+    <database id="6" name="ghiseul_unic_not">
+      <object-id>25902</object-id>
+    </database>
+    <database id="7" name="registruSMED">
+      <object-id>28243</object-id>
+    </database>
+    <database id="8" name="servicii_mpay">
+      <object-id>36684</object-id>
+    </database>
+    <database id="9" name="cris_registru">
+      <object-id>37758</object-id>
+    </database>
+    <database id="10" name="registru_gaj">
+      <object-id>38240</object-id>
+    </database>
+    <database id="11" name="registru_scan">
+      <object-id>39232</object-id>
+    </database>
+    <database id="12" name="mpay">
+      <object-id>41539</object-id>
+    </database>
+    <database id="13" name="ghiseul_unic">
+      <object-id>58277</object-id>
+    </database>
+    <database id="14" name="synapsis">
+      <object-id>74537</object-id>
+    </database>
+    <database id="15" name="unic_counter_old">
+      <object-id>117424</object-id>
+    </database>
+    <database id="16" name="synapsis2">
+      <object-id>128195</object-id>
+    </database>
+    <database id="17" name="synapsis_test_emil">
+      <object-id>130613</object-id>
+    </database>
+    <database id="18" name="synapsis_tudor">
+      <object-id>135668</object-id>
+    </database>
+    <database id="19" name="firefighter1">
+      <object-id>136314</object-id>
+    </database>
+    <database id="20" name="synapsis_v2">
+      <object-id>137532</object-id>
+    </database>
+    <database id="21" name="minmediu2">
+      <object-id>150278</object-id>
+    </database>
+    <database id="22" name="synapsis_registru">
+      <object-id>151743</object-id>
+    </database>
+    <database id="23" name="synapsis_v2_sharepoint">
+      <object-id>153150</object-id>
+    </database>
+    <database id="24" name="dima_test_azi">
+      <object-id>156158</object-id>
+    </database>
+    <database id="25" name="cni">
+      <object-id>156765</object-id>
+    </database>
+    <database id="26" name="cni_2015">
+      <object-id>158972</object-id>
+    </database>
+    <database id="27" name="registru_vip">
+      <object-id>166681</object-id>
+    </database>
+    <database id="28" name="synapsis_v2_stas">
+      <object-id>167280</object-id>
+    </database>
+    <database id="29" name="test_synapsis_29">
+      <object-id>170879</object-id>
+    </database>
+    <database id="30" name="synapsis_minmediu">
+      <object-id>171538</object-id>
+    </database>
+    <database id="31" name="new_registru_scan">
+      <object-id>176736</object-id>
+    </database>
+    <database id="32" name="mpay_v2">
+      <object-id>182727</object-id>
+    </database>
+    <database id="33" name="firefighter">
+      <object-id>190853</object-id>
+    </database>
+    <database id="34" name="minmediu">
+      <object-id>192396</object-id>
+    </database>
+    <database id="35" name="unic_counter_notar">
+      <object-id>208853</object-id>
+    </database>
+    <database id="36" name="unic_counter">
+      <object-id>210188</object-id>
+    </database>
+    <database id="37" name="unic_counter_ong">
+      <object-id>213665</object-id>
+    </database>
+    <database id="38" name="firefighter_crpypt">
+      <object-id>229934</object-id>
+    </database>
+    <database id="39" name="cni_2015_prezentare_30_04">
+      <object-id>233639</object-id>
+    </database>
+    <database id="40" name="e_ticket_v1">
+      <object-id>237408</object-id>
+    </database>
+    <database id="41" name="e_ticket">
+      <object-id>240224</object-id>
+    </database>
+    <database id="42" name="e_ticket_service">
+      <object-id>242814</object-id>
+    </database>
+    <database id="43" name="cni_2015_export">
+      <object-id>244125</object-id>
+    </database>
+    <database id="44" name="apostila">
+      <object-id>246010</object-id>
+    </database>
+    <database id="45" name="apostille">
+      <object-id>247886</object-id>
+    </database>
+    <database id="46" name="asterisk">
+      <object-id>249347</object-id>
+    </database>
+    <database id="47" name="gcmc">
+      <object-id>250181</object-id>
+    </database>
+    <database id="48" name="cni_2015_export_2_backup">
+      <object-id>251861</object-id>
+    </database>
+    <database id="49" name="e_ticket_anta_role">
+      <object-id>254480</object-id>
+    </database>
+    <database id="50" name="synapsis_test_30">
+      <object-id>258744</object-id>
+    </database>
+    <database id="51" name="cni_2015_export_2">
+      <object-id>263838</object-id>
+    </database>
+    <database id="52" name="test_maxim">
+      <object-id>266333</object-id>
+    </database>
+    <database id="53" name="dima_pompieri">
+      <object-id>274016</object-id>
+    </database>
+    <database id="54" name="cni_2015_scan">
+      <object-id>276484</object-id>
+    </database>
+    <database id="55" name="e_ticket_cfm">
+      <object-id>279679</object-id>
+    </database>
+    <database id="56" name="firefighter_final">
+      <object-id>314958</object-id>
+    </database>
+    <database id="57" name="capital_city">
+      <object-id>323615</object-id>
+    </database>
+    <database id="58" name="licitatii">
+      <object-id>357315</object-id>
+    </database>
+    <database id="59" name="stas_doruc">
+      <object-id>359460</object-id>
+    </database>
+    <database id="60" name="e_ticket_cfm_mpay">
+      <object-id>364396</object-id>
+    </database>
+    <database id="61" name="firefighter_serv">
+      <object-id>367296</object-id>
+    </database>
+    <database id="62" name="cni_2015_empty">
+      <object-id>372699</object-id>
+    </database>
+    <database id="63" name="counter_hella">
+      <object-id>389120</object-id>
+    </database>
+    <database id="64" name="chat">
+      <object-id>438404</object-id>
+    </database>
+    <database id="65" name="esb">
+      <object-id>441763</object-id>
+    </database>
+    <database id="66" name="e_case_development">
+      <object-id>448499</object-id>
+    </database>
+    <schema id="67" parent="1" name="public">
+      <object-id>2200</object-id>
+      <visible>1</visible>
+      <introspection-state-number>5943645</introspection-state-number>
+      <introspection-timestamp>2016-07-18.12:30:18.133</introspection-timestamp>
+    </schema>
+    <schema id="68" parent="1" name="pg_catalog">
+      <object-id>11</object-id>
+    </schema>
+    <schema id="69" parent="1" name="pg_toast">
+      <object-id>99</object-id>
+    </schema>
+    <schema id="70" parent="1" name="pg_temp_1">
+      <object-id>11215</object-id>
+    </schema>
+    <schema id="71" parent="1" name="pg_toast_temp_1">
+      <object-id>11216</object-id>
+    </schema>
+    <schema id="72" parent="1" name="information_schema">
+      <object-id>11488</object-id>
+    </schema>
+    <sequence id="73" parent="67" name="dss007_id_primary_seq">
+      <object-id>441802</object-id>
+      <state-number>5710887</state-number>
+    </sequence>
+    <sequence id="74" parent="67" name="gps_id_seq">
+      <object-id>451470</object-id>
+      <state-number>5777607</state-number>
+    </sequence>
+    <sequence id="75" parent="67" name="hibernate_sequence">
+      <object-id>451443</object-id>
+      <state-number>5775383</state-number>
+    </sequence>
+    <sequence id="76" parent="67" name="nomecolator_reference_id_seq">
+      <object-id>459715</object-id>
+      <state-number>5931235</state-number>
+    </sequence>
+    <sequence id="77" parent="67" name="nomecolators_id_seq">
+      <object-id>459948</object-id>
+      <state-number>5931536</state-number>
+    </sequence>
+    <sequence id="78" parent="67" name="products_id_primary_seq">
+      <object-id>441769</object-id>
+      <state-number>5694706</state-number>
+    </sequence>
+    <sequence id="79" parent="67" name="rights_id_seq">
+      <object-id>439028</object-id>
+      <state-number>5683418</state-number>
+    </sequence>
+    <sequence id="80" parent="67" name="usersrightsrelation_id_seq">
+      <object-id>439036</object-id>
+      <state-number>5683463</state-number>
+    </sequence>
+    <table id="81" parent="67" name="acces">
+      <object-id>451489</object-id>
+      <state-number>5784798</state-number>
+    </table>
+    <table id="82" parent="67" name="document">
+      <object-id>459961</object-id>
+      <state-number>5943645</state-number>
+    </table>
+    <table id="83" parent="67" name="dss007">
+      <object-id>441795</object-id>
+      <state-number>5710887</state-number>
+    </table>
+    <table id="84" parent="67" name="dss010">
+      <object-id>439005</object-id>
+      <state-number>5710248</state-number>
+    </table>
+    <table id="85" parent="67" name="gps">
+      <object-id>451467</object-id>
+      <state-number>5777610</state-number>
+    </table>
+    <table id="86" parent="67" name="minors">
+      <object-id>451445</object-id>
+      <state-number>5775384</state-number>
+    </table>
+    <table id="87" parent="67" name="nomecolator_reference">
+      <object-id>459712</object-id>
+      <state-number>5931235</state-number>
+    </table>
+    <table id="88" parent="67" name="nomecolators">
+      <object-id>459950</object-id>
+      <state-number>5931536</state-number>
+    </table>
+    <table id="89" parent="67" name="obiecte">
+      <object-id>438984</object-id>
+      <state-number>5679774</state-number>
+    </table>
+    <table id="90" parent="67" name="other">
+      <object-id>438987</object-id>
+      <state-number>5707041</state-number>
+    </table>
+    <table id="91" parent="67" name="person">
+      <object-id>451453</object-id>
+      <state-number>5775385</state-number>
+    </table>
+    <table id="92" parent="67" name="person_minor_relation">
+      <object-id>451461</object-id>
+      <state-number>5775386</state-number>
+    </table>
+    <table id="93" parent="67" name="postal_codes">
+      <object-id>438999</object-id>
+      <state-number>5680011</state-number>
+    </table>
+    <table id="94" parent="67" name="relation">
+      <object-id>448465</object-id>
+      <state-number>5753696</state-number>
+    </table>
+    <table id="95" parent="67" name="rights">
+      <object-id>439030</object-id>
+      <state-number>5733940</state-number>
+    </table>
+    <table id="96" parent="67" name="rigts">
+      <object-id>448470</object-id>
+      <state-number>5753697</state-number>
+    </table>
+    <table id="97" parent="67" name="student">
+      <object-id>438978</object-id>
+      <state-number>5679772</state-number>
+    </table>
+    <table id="98" parent="67" name="users">
+      <object-id>448475</object-id>
+      <state-number>5753698</state-number>
+    </table>
+    <table id="99" parent="67" name="users_for_esb_insert">
+      <object-id>439002</object-id>
+      <state-number>5680103</state-number>
+    </table>
+    <table id="100" parent="67" name="usersrightsrelation">
+      <object-id>439038</object-id>
+      <state-number>5733940</state-number>
+    </table>
+    <view id="101" parent="67" name="getbyid">
+      <object-id>439016</object-id>
+      <state-number>5683270</state-number>
+    </view>
+    <routine id="102" parent="67" name="getrightsbyuserid_nested">
+      <object-id>448253</object-id>
+      <state-number>5752700</state-number>
+      <routine-kind>FUNCTION</routine-kind>
+      <returns-set>1</returns-set>
+    </routine>
+    <routine id="103" parent="67" name="getrightsbyuserid">
+      <object-id>448248</object-id>
+      <state-number>5752660</state-number>
+      <routine-kind>FUNCTION</routine-kind>
+    </routine>
+    <column id="104" parent="81" name="user">
+      <state-number>5784798</state-number>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="105" parent="81" name="password">
+      <state-number>5784798</state-number>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="106" parent="82" name="id">
+      <state-number>5943645</state-number>
+      <mandatory>1</mandatory>
+      <data-type>bigint|0</data-type>
+    </column>
+    <column id="107" parent="82" name="data_incarcarii">
+      <state-number>5943645</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="108" parent="82" name="name">
+      <state-number>5943645</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="109" parent="82" name="pw">
+      <state-number>5943645</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="110" parent="82" name="username">
+      <state-number>5943645</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="111" parent="82" name="versiunea">
+      <state-number>5943645</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="112" parent="82" name="document_pkey">
+      <object-id>459967</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="113" parent="82" name="document_pkey">
+      <object-id>459968</object-id>
+      <columns>id</columns>
+      <underlying-index>document_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="114" parent="83" name="id">
+      <state-number>5710885</state-number>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="115" parent="83" name="model">
+      <state-number>5710885</state-number>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="116" parent="83" name="classification">
+      <state-number>5710885</state-number>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="117" parent="83" name="id_primary">
+      <state-number>5710887</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('dss007_id_primary_seq'::regclass)</default-expression>
+    </column>
+    <index id="118" parent="83" name="dss007_id_primary_pk">
+      <object-id>441811</object-id>
+      <columns>id_primary</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="119" parent="83" name="dss007_id_primary_pk">
+      <object-id>441812</object-id>
+      <columns>id_primary</columns>
+      <underlying-index>dss007_id_primary_pk</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="120" parent="84" name="id">
+      <state-number>5680175</state-number>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="121" parent="84" name="email">
+      <state-number>5710260</state-number>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="122" parent="84" name="domen">
+      <state-number>5710261</state-number>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="123" parent="84" name="id_primary">
+      <state-number>5694706</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('products_id_primary_seq'::regclass)</default-expression>
+    </column>
+    <index id="124" parent="84" name="products_id_primary_pk">
+      <object-id>441775</object-id>
+      <columns>id_primary</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="125" parent="84" name="products_id_primary_pk">
+      <object-id>441776</object-id>
+      <columns>id_primary</columns>
+      <underlying-index>products_id_primary_pk</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="126" parent="85" name="longitudine">
+      <state-number>5777626</state-number>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="127" parent="85" name="latitudine">
+      <state-number>5777627</state-number>
+      <data-type>real|0</data-type>
+    </column>
+    <column id="128" parent="85" name="data">
+      <state-number>5777606</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="129" parent="85" name="id">
+      <state-number>5777607</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('gps_id_seq'::regclass)</default-expression>
+    </column>
+    <index id="130" parent="85" name="gps_id_pk">
+      <object-id>451476</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="131" parent="85" name="gps_id_pk">
+      <object-id>451477</object-id>
+      <columns>id</columns>
+      <underlying-index>gps_id_pk</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="132" parent="86" name="id">
+      <state-number>5775384</state-number>
+      <mandatory>1</mandatory>
+      <data-type>bigint|0</data-type>
+    </column>
+    <column id="133" parent="86" name="age">
+      <state-number>5775384</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="134" parent="86" name="minor_name">
+      <state-number>5775384</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="135" parent="86" name="minor_surname">
+      <state-number>5775384</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="136" parent="86" name="minors_pkey">
+      <object-id>451451</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="137" parent="86" name="minors_pkey">
+      <object-id>451452</object-id>
+      <columns>id</columns>
+      <underlying-index>minors_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="138" parent="87" name="id_reference_from">
+      <state-number>5931233</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="139" parent="87" name="id_reference_to">
+      <state-number>5931234</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="140" parent="87" name="id">
+      <state-number>5931235</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('nomecolator_reference_id_seq'::regclass)</default-expression>
+    </column>
+    <index id="141" parent="87" name="nomecolator_reference_id_pk">
+      <object-id>459721</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="142" parent="87" name="nomecolator_reference_id_pk">
+      <object-id>459722</object-id>
+      <columns>id</columns>
+      <underlying-index>nomecolator_reference_id_pk</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="143" parent="88" name="id">
+      <state-number>5931536</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('nomecolators_id_seq'::regclass)</default-expression>
+    </column>
+    <column id="144" parent="88" name="name">
+      <state-number>5931536</state-number>
+      <data-type>text|0</data-type>
+    </column>
+    <index id="145" parent="88" name="nomecolators_pkey">
+      <object-id>459957</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="146" parent="88" name="nomecolators_name_uindex">
+      <object-id>459959</object-id>
+      <columns>name</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="147" parent="88" name="nomecolators_pkey">
+      <object-id>459958</object-id>
+      <columns>id</columns>
+      <underlying-index>nomecolators_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="148" parent="89" name="student_id">
+      <state-number>5679774</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="149" parent="89" name="obiect">
+      <state-number>5679774</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="150" parent="90" name="media">
+      <state-number>5679775</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="151" parent="90" name="bursa">
+      <state-number>5679775</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="152" parent="90" name="student_id">
+      <state-number>5679775</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="153" parent="90" name="character">
+      <state-number>5679775</state-number>
+      <data-type>name|0</data-type>
+    </column>
+    <column id="154" parent="90" name="email">
+      <state-number>5707041</state-number>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="155" parent="91" name="idmp">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>bigint|0</data-type>
+    </column>
+    <column id="156" parent="91" name="adresa">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="157" parent="91" name="birthday">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="158" parent="91" name="cetatenie">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="159" parent="91" name="documente_de_identificare">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="160" parent="91" name="locul_nasterii">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="161" parent="91" name="materialstatus">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="162" parent="91" name="minors">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="163" parent="91" name="name">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="164" parent="91" name="nationalitate">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="165" parent="91" name="patronimicul">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="166" parent="91" name="sex">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="167" parent="91" name="surname">
+      <state-number>5775385</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="168" parent="91" name="person_pkey">
+      <object-id>451459</object-id>
+      <columns>idmp</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="169" parent="91" name="person_pkey">
+      <object-id>451460</object-id>
+      <columns>idmp</columns>
+      <underlying-index>person_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="170" parent="92" name="id">
+      <state-number>5775386</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="171" parent="92" name="person_idmp">
+      <state-number>5775386</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="172" parent="92" name="minor_id">
+      <state-number>5775386</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="173" parent="92" name="person_minor_relation_pkey">
+      <object-id>451464</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="174" parent="92" name="person_minor_relation_pkey">
+      <object-id>451465</object-id>
+      <columns>id</columns>
+      <underlying-index>person_minor_relation_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="175" parent="93" name="id">
+      <state-number>5680011</state-number>
+      <data-type>char|0</data-type>
+    </column>
+    <column id="176" parent="93" name="postal_code">
+      <state-number>5680011</state-number>
+      <data-type>char|0</data-type>
+    </column>
+    <column id="177" parent="93" name="city_name">
+      <state-number>5680011</state-number>
+      <data-type>char|0</data-type>
+    </column>
+    <column id="178" parent="94" name="id">
+      <state-number>5753696</state-number>
+      <mandatory>1</mandatory>
+      <data-type>bigint|0</data-type>
+    </column>
+    <column id="179" parent="94" name="id_right">
+      <state-number>5753696</state-number>
+      <data-type>bigint|0</data-type>
+    </column>
+    <column id="180" parent="94" name="id_user">
+      <state-number>5753696</state-number>
+      <data-type>bigint|0</data-type>
+    </column>
+    <index id="181" parent="94" name="relation_pkey">
+      <object-id>448468</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="182" parent="94" name="relation_pkey">
+      <object-id>448469</object-id>
+      <columns>id</columns>
+      <underlying-index>relation_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="183" parent="95" name="id">
+      <state-number>5683418</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('rights_id_seq'::regclass)</default-expression>
+    </column>
+    <column id="184" parent="95" name="name">
+      <state-number>5683418</state-number>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <index id="185" parent="95" name="rights_pkey">
+      <object-id>439034</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="186" parent="95" name="rights_pkey">
+      <object-id>439035</object-id>
+      <columns>id</columns>
+      <underlying-index>rights_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="187" parent="96" name="id">
+      <state-number>5753697</state-number>
+      <mandatory>1</mandatory>
+      <data-type>bigint|0</data-type>
+    </column>
+    <column id="188" parent="96" name="name">
+      <state-number>5753697</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="189" parent="96" name="rigts_pkey">
+      <object-id>448473</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="190" parent="96" name="rigts_pkey">
+      <object-id>448474</object-id>
+      <columns>id</columns>
+      <underlying-index>rigts_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="191" parent="97" name="name">
+      <state-number>5679772</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="192" parent="97" name="marks">
+      <state-number>5679772</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="193" parent="97" name="status">
+      <state-number>5679772</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="194" parent="97" name="student_id">
+      <state-number>5679772</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="195" parent="98" name="id">
+      <state-number>5753698</state-number>
+      <mandatory>1</mandatory>
+      <data-type>bigint|0</data-type>
+    </column>
+    <column id="196" parent="98" name="name">
+      <state-number>5753698</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="197" parent="98" name="users_pkey">
+      <object-id>448478</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="198" parent="98" name="users_pkey">
+      <object-id>448479</object-id>
+      <columns>id</columns>
+      <underlying-index>users_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="199" parent="99" name="id">
+      <state-number>5680103</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="200" parent="99" name="name">
+      <state-number>5680103</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="201" parent="100" name="id">
+      <state-number>5683463</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('usersrightsrelation_id_seq'::regclass)</default-expression>
+    </column>
+    <column id="202" parent="100" name="user_id">
+      <state-number>5683463</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="203" parent="100" name="right_id">
+      <state-number>5683463</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="204" parent="100" name="usersrightsrelation_pkey">
+      <object-id>439042</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="205" parent="100" name="usersrightsrelation_user_id_index">
+      <object-id>441840</object-id>
+      <columns>user_id</columns>
+      <desc-columns />
+    </index>
+    <index id="206" parent="100" name="usersrightsrelation_right_id_index">
+      <object-id>441841</object-id>
+      <columns>right_id</columns>
+      <desc-columns />
+    </index>
+    <key id="207" parent="100" name="usersrightsrelation_pkey">
+      <object-id>439043</object-id>
+      <columns>id</columns>
+      <underlying-index>usersrightsrelation_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="208" parent="100" name="usersrightsrelation_rights_id_fk">
+      <object-id>441835</object-id>
+      <columns>right_id</columns>
+      <ref-key>~.rights.rights_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="209" parent="101" name="name">
+      <state-number>5683270</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="210" parent="101" name="marks">
+      <state-number>5683270</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="211" parent="101" name="status">
+      <state-number>5683270</state-number>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="212" parent="101" name="student_id">
+      <state-number>5683270</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <argument id="213" parent="102">
+      <direction>IN</direction>
+      <data-type>integer|0</data-type>
+    </argument>
+    <argument id="214" parent="102">
+      <direction>RETURN</direction>
+      <data-type>setof varchar|0</data-type>
+    </argument>
+    <argument id="215" parent="103">
+      <direction>IN</direction>
+      <data-type>integer|0</data-type>
+    </argument>
+    <argument id="216" parent="103">
+      <direction>RETURN</direction>
+      <data-type>integer|0</data-type>
+    </argument>
+  </database-model>
+</dataSource>
