@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "cl_troubles_comments")
-public class TroublesComments {
+public class TroublesComments implements Comments{
     @Id
     @GeneratedValue
     @Column(name = "id",nullable =false)

@@ -97,8 +97,8 @@ public class FeedController {
     @RequestMapping(path = "/getFeedByType3", method = RequestMethod.POST)
     @ResponseBody
     List<Suggestion> getSugestion(@RequestParam(value="user_id", required=false) long user_id,
-                         @RequestParam(value="count", required=false) int count,
-                         @RequestParam(value="index", required=false) int index ){
+                                  @RequestParam(value="count", required=false) int count,
+                                  @RequestParam(value="index", required=false) int index ){
         List<Suggestion> suggestions = suggestionRepository.returnByStep(count, index);
         for (Suggestion currentSuggestion: suggestions){
             currentSuggestion.setUsers_supported(voteSuggestionRepository.getSupported(currentSuggestion.getId()));
@@ -114,8 +114,8 @@ public class FeedController {
     @RequestMapping(path = "/getFeedByType2", method = RequestMethod.POST)
     @ResponseBody
     List<Trouble> getTroubles(@RequestParam(value="user_id", required=false) long user_id,
-                                  @RequestParam(value="count", required=false) int count,
-                                  @RequestParam(value="index", required=false) int index ){
+                              @RequestParam(value="count", required=false) int count,
+                              @RequestParam(value="index", required=false) int index ){
         List<Trouble> troubles = troubleRepository.returnByStep(count,index);
         for(Trouble currentTrouble: troubles){
             currentTrouble.setUsers_supported(voteTroubleRepository.getSupported(currentTrouble.getId()));
@@ -128,8 +128,8 @@ public class FeedController {
     @RequestMapping(path = "/getFeedByType1", method = RequestMethod.POST)
     @ResponseBody
     List<Voluntaries> getVoluntaries(@RequestParam(value="user_id", required=false) Long user_id,
-                              @RequestParam(value="count", required=false) int count,
-                              @RequestParam(value="index", required=false) int index ){
+                                     @RequestParam(value="count", required=false) int count,
+                                     @RequestParam(value="index", required=false) int index ){
         List<Voluntaries> voluntaries = voluntariesRepository.returnByStep(count, index);
         for(Voluntaries currentVoluntaries:voluntaries){
             currentVoluntaries.setUsers_joined(voteVoluntaryRepository.getJoined(currentVoluntaries.getId()));
