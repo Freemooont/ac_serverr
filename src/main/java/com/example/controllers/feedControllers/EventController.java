@@ -4,17 +4,12 @@ import com.example.entity.feeds.Event;
 import com.example.repository.feedRepository.EventRepository;
 import com.example.repository.votesRepository.VoteEventRepository;
 import com.example.services.exception.UserAlreadyExistsException;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,55 +88,4 @@ public class EventController {
         }
 
     }
-
-    /*JDBC fignea*/
-    @RequestMapping(path = "/abc")
-    @ResponseBody
-    JSONArray returnEventsWithFeeds(){
-
-        JSONArray array = new JSONArray();
-        Connection c = null;
-        Statement stmt = null;
-
-        try {
-            java.lang.Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://192.168.16.233:5432/active_city",
-                            "postgres", "123qweASD");
-            c.setAutoCommit(false);
-
-            stmt = c.createStatement();
-            ResultSet resultSet = stmt.executeQuery( "SELECT * from cl_feed_events f FULL OUTER JOIN" +
-                    " (SELECT sum(v.vote) as likes, v.feed_id as feed_id " +
-                    "FROM cl_vote_events v INNER JOIN  cl_feed_events f ON v.feed_id = f.id GROUP BY" +
-                    " v.feed_id) d ON f.id = d.feed_id;" );
-
-            while (resultSet.next() ) {
-                JSONObject object = new JSONObject();
-                object.put("id",resultSet.getLong("id"));
-                object.put("user_id",resultSet.getLong("user_id"));
-                object.put("title",resultSet.getString("title"));
-                object.put("content",resultSet.getString("content"));
-                object.put("media",resultSet.getString("media"));
-                object.put("location",resultSet.getString("location"));
-                object.put("place_id",resultSet.getString("place_id"));
-                object.put("date_time_post",resultSet.getTimestamp("date_time_post"));
-                object.put("date_time_start",resultSet.getTimestamp("date_time_start"));
-                object.put("date_time_end",resultSet.getTimestamp("date_time_end"));
-                object.put("feed_id",resultSet.getLong("feed_id"));
-                object.put("likes",resultSet.getInt("likes"));
-                System.out.println(resultSet.getInt("likes"));
-                array.add(object);
-            }
-            resultSet.close();
-            stmt.close();
-            c.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-            System.exit(0);
-        }
-        return array;
-    }
-
-
 }

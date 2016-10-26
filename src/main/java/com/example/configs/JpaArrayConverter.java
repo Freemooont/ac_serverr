@@ -3,13 +3,10 @@ package com.example.configs;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import javax.persistence.AttributeConverter;
 
-/**
- * Created by freem on 9/27/16.
- */
+
 public class JpaArrayConverter  implements AttributeConverter<JSONArray, String> {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
@@ -32,8 +29,9 @@ public class JpaArrayConverter  implements AttributeConverter<JSONArray, String>
     @Override
     public JSONArray convertToEntityAttribute(String dbData) {
         try {
-            return (JSONArray) new JSONParser().parse(dbData);
-        } catch (ParseException e) {
+            System.out.println(dbData + " ---------------");
+            return (JSONArray)new JSONParser().parse(dbData);
+        } catch (Exception e) {
             e.printStackTrace();
             return new JSONArray();
 

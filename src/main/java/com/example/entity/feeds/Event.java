@@ -26,6 +26,7 @@ public class Event implements Feed{
     @Column(name = "content",nullable =false)
     String content;
 
+
     @Convert(converter = JpaArrayConverter.class)
     @Column(name = "feed_media",nullable =false)
     JSONArray feed_media;
@@ -47,6 +48,7 @@ public class Event implements Feed{
     @Column(name = "datetime_end", nullable = false)
     Timestamp datetime_end;
 
+    @JoinColumn(name = "user_id")
     @ManyToOne
     Profile user;
 

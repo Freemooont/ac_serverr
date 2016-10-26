@@ -47,6 +47,7 @@ public class Voluntaries implements Feed{
     @Column(name = "datetime_end", nullable = false)
     Timestamp datetime_end;
 
+    @JoinColumn(name = "user_id")
     @ManyToOne
     Profile user;
 

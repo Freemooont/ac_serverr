@@ -8,7 +8,6 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <introspection-scope>wso2:pg_catalog,postgres,public</introspection-scope>
       <resolve-scope>wso2:postgres,public</resolve-scope>
     </data-source>
     <data-source name="PostgreSQL - jdbc:postgresql://192.168.16.233 :5432/city" uuid="0ebaaac2-6310-468c-aa40-2d063c60127b">
@@ -18,7 +17,6 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <introspection-scope>city:pg_catalog,postgres,public</introspection-scope>
       <resolve-scope>city:postgres,public</resolve-scope>
     </data-source>
     <data-source name="PostgreSQL - active_city_db@localhost" uuid="48d64a48-96ea-49cd-bb45-812bc9fa6f79">
@@ -28,7 +26,6 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>public_root</user-name>
-      <introspection-scope>active_city_db:pg_catalog,public,public_root</introspection-scope>
       <resolve-scope>active_city_db:public,public_root</resolve-scope>
     </data-source>
     <data-source name="PostgreSQL - active_city@192.168.16.233" uuid="76e6c4dd-ed02-417b-b729-2db07e53cdfb">
@@ -38,7 +35,24 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <introspection-scope>active_city:pg_catalog,postgres,public</introspection-scope>
+      <resolve-scope>active_city:postgres,public</resolve-scope>
+    </data-source>
+    <data-source name="PostgreSQL - active_city@87.255.81.192" uuid="741dcc72-08e2-4376-a321-cc4e2ab69e60">
+      <database-info product="PostgreSQL" version="9.3.14" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <resolve-scope>active_city:postgres,public</resolve-scope>
+    </data-source>
+    <data-source name="PostgreSQL - active_city@localhost" uuid="e3dcda8d-08ff-44a7-a30a-289e15392150">
+      <database-info product="PostgreSQL" version="9.3.14" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
       <resolve-scope>active_city:postgres,public</resolve-scope>
     </data-source>
   </component>

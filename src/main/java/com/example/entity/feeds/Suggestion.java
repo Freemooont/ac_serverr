@@ -40,6 +40,7 @@ public class Suggestion implements Feed{
     @Column(name = "date_time_post", nullable = false)
     Timestamp datetime_post;
 
+    @JoinColumn(name = "user_id")
     @ManyToOne
     Profile user;
 

@@ -10,15 +10,6 @@ import javax.persistence.AttributeConverter;
 public class JpaConverterJson implements AttributeConverter<JSONObject, String> {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
-  /*  @Override
-    public String convertToDatabaseColumn(JSONObjectObject meta) {
-        try {
-            return objectMapper.writeValueAsString(meta);
-        } catch (JsonProcessingException ex) {
-            return null;
-            // or throw an error
-        }
-    }*/
 
     @Override
     public String convertToDatabaseColumn(JSONObject attribute) {

@@ -71,7 +71,7 @@ public class VoteController {
                     return (T) voteTroubleRepository.save(voteTrouble);
                 }else{
                     voteTrouble1.setVote(vote);
-                    return (T)voteTrouble1;
+                    return (T)voteTroubleRepository.save(voteTrouble1);
                 }
                 }
 
@@ -92,7 +92,7 @@ public class VoteController {
                     return (T) voteSuggestionRepository.save(voteSuggestion);
                 }else{
                     voteSuggestion1.setVote(vote);
-                    return (T)voteSuggestion1;
+                    return (T)voteSuggestionRepository.save(voteSuggestion1);
                 }
                 }
             case 4:
@@ -112,7 +112,7 @@ public class VoteController {
                     return (T) voteEventRepository.save(voteEvent);
                 }else {
                     voteEvent1.setVote(vote);
-                    return (T) voteEvent1;
+                    return (T) voteEventRepository.save(voteEvent1);
                 }
                 }
             default:

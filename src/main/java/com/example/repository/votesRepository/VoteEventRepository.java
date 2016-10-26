@@ -1,15 +1,10 @@
 package com.example.repository.votesRepository;
 
-import com.example.entity.votes.EventLikes;
 import com.example.entity.votes.VoteEvent;
 
-import com.example.entity.votes.VoteSuggestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public interface VoteEventRepository extends JpaRepository <VoteEvent, Long> {
     String LIKES_QUERY = "SELECT count(t.vote) FROM cl_vote_events t WHERE t.feed_id = :feed_id AND t.vote = 1";
