@@ -8,69 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="064b48f6-0d85-41e7-b189-575fb7cfe2c1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/artifacts/spring-cat/exploded/active-city.war/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/upload/Upload.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/upload/UploadRepository.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/com/example/controllers/upload/PhotoGetter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/votes/EventLikes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/libs/active-city-debug.war" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/libs/active-city-debug.war.original" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/photos/dot.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/votes/EventLikes.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___active_city_debug_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___active_city_war.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___active_city_debug_war__exploded_.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___active_city_war__exploded_.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/example/controllers/upload/PhotoGetter.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/controllers/upload/MediaGetter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/configs/JpaArrayConverter.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/configs/JpaArrayConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/configs/JpaConverterJson.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/configs/JpaConverterJson.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/controllers/feedControllers/EventController.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/controllers/feedControllers/EventController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/controllers/feedControllers/FeedController.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/controllers/feedControllers/FeedController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/controllers/upload/FileUploadController.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/controllers/upload/FileUploadController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/controllers/voteControllers/VoteController.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/controllers/voteControllers/VoteController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/EventComments.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/EventComments.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/SuggestionComments.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/SuggestionComments.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/TroublesComments.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/TroublesComments.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/VoluntariesComments.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/comments/VoluntariesComments.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Event.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Event.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Suggestion.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Suggestion.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Trouble.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Trouble.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Voluntaries.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/entity/feeds/Voluntaries.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/EventsCommentsRepository.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/EventsCommentsRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/SuggestionsCommentsRepository.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/SuggestionsCommentsRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/TroublesCommentsRepository.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/TroublesCommentsRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/VoluntariesCommentsRepository.class" afterPath="$PROJECT_DIR$/build/classes/main/com/example/repository/commentsRepository/VoluntariesCommentsRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test-results/binary/test/output.bin" afterPath="$PROJECT_DIR$/build/test-results/binary/test/output.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test-results/binary/test/output.bin.idx" afterPath="$PROJECT_DIR$/build/test-results/binary/test/output.bin.idx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test-results/binary/test/results.bin" afterPath="$PROJECT_DIR$/build/test-results/binary/test/results.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/76e6c4dd-ed02-417b-b729-2db07e53cdfb.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/76e6c4dd-ed02-417b-b729-2db07e53cdfb.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/spring-cat_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/spring-cat_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/spring-cat_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/spring-cat_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/reports/tests/classes/com.example.ExampleApplicationTests.html" afterPath="$PROJECT_DIR$/build/reports/tests/classes/com.example.ExampleApplicationTests.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/reports/tests/index.html" afterPath="$PROJECT_DIR$/build/reports/tests/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/reports/tests/packages/com.example.html" afterPath="$PROJECT_DIR$/build/reports/tests/packages/com.example.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/application.properties" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test-results/TEST-com.example.ExampleApplicationTests.xml" afterPath="$PROJECT_DIR$/build/test-results/TEST-com.example.ExampleApplicationTests.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/configs/JpaArrayConverter.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/configs/JpaArrayConverter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/configs/JpaConverterJson.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/configs/JpaConverterJson.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/controllers/commentsControllers/CommentsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/controllers/commentsControllers/CommentsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/controllers/feedControllers/EventController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/controllers/feedControllers/EventController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/controllers/feedControllers/FeedController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/controllers/feedControllers/FeedController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/controllers/upload/FileUploadController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/controllers/upload/FileUploadController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/controllers/voteControllers/VoteController.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/controllers/voteControllers/VoteController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Event.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Event.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Suggestion.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Suggestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Trouble.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Trouble.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Voluntaries.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/entity/feeds/Voluntaries.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/votesRepository/VoteEventRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/votesRepository/VoteEventRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
     </list>
     <ignored path="spring-cat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2081,7 +2019,7 @@
       <workItem from="1477056507620" duration="16114000" />
       <workItem from="1477217515778" duration="1195000" />
       <workItem from="1477310931608" duration="13303000" />
-      <workItem from="1477483870731" duration="2906000" />
+      <workItem from="1477483870731" duration="3251000" />
     </task>
     <task id="LOCAL-00001" summary="comment, joins, feeds base">
       <created>1475756643645</created>
@@ -2090,11 +2028,18 @@
       <option name="project" value="LOCAL" />
       <updated>1475756643645</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feeds_tott">
+      <created>1477490335079</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1477490335079</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="468734000" />
+    <option name="totallyTimeSpent" value="469079000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2157,7 +2102,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="comment, joins, feeds base" />
-    <option name="LAST_COMMIT_MESSAGE" value="comment, joins, feeds base" />
+    <MESSAGE value="feeds_tott" />
+    <option name="LAST_COMMIT_MESSAGE" value="feeds_tott" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2371,6 +2317,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2378,6 +2325,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2421,6 +2369,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="36" column="46" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2429,6 +2378,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2436,6 +2386,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2443,6 +2394,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2450,6 +2402,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-932">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
