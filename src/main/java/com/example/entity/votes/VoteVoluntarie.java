@@ -3,7 +3,7 @@ package com.example.entity.votes;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cl_vote_volutaries")
+@Table(name = "cl_vote_voluntaries")
 public class VoteVoluntarie implements Vote {
 
     @Id

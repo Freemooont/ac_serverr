@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface SuggestionRepository extends JpaRepository<Suggestion,Long> {
-    String FEEDS_BY_STEP = "select * from cl_feed_suggestion limit :step offset :step_offset";
+    String FEEDS_BY_STEP = "select * from cl_feed_suggestions ORDER BY date_time_post DESC limit :step offset :step_offset";
 
     @Query(value = FEEDS_BY_STEP, nativeQuery = true)
     List<Suggestion> returnByStep(@Param("step") int step, @Param("step_offset") int step_offset);

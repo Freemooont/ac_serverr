@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event,Long> {
     String FEEDS_NUMBER = "select count(t.user_id) from cl_feed_events t where t.user_id = :user_id";
-    String FEEDS_BY_STEP = "select * from cl_feed_events limit :step offset :step_offset";
+    String FEEDS_BY_STEP = "select * from cl_feed_events ORDER BY datetime_post DESC  limit :step offset :step_offset";
     String FEEDS_BY_STEP1 = "select * from cl_feed_events limit :step offset :step_offset";
 
     @Query(value = FEEDS_NUMBER, nativeQuery = true)

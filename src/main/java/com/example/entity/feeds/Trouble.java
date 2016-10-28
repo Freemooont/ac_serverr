@@ -34,8 +34,11 @@ public class Trouble implements Feed{
     @Column(name = "location",nullable =false)
     JSONObject location;
 
-    @Column(name = "place_id",nullable =false)
-    String place_id = "123";
+    @Column(name = "area_id",nullable =false)
+    String area_id="123";
+
+    @Column(name = "locality_id",nullable =false)
+    String locality_id="123";
 
     @Column(name = "date_time_post", nullable = false)
     Timestamp datetime_post;
@@ -134,14 +137,6 @@ public class Trouble implements Feed{
         this.location = location;
     }
 
-    public String getPlace_id() {
-        return place_id;
-    }
-
-    public void setPlace_id(String place_id) {
-        this.place_id = place_id;
-    }
-
     public Timestamp getDatetime_post() {
         return datetime_post;
     }
@@ -153,27 +148,34 @@ public class Trouble implements Feed{
     public Trouble() {
     }
 
-    public Trouble(Long user_id, String title, String content, JSONArray media, JSONObject location, String place_id, Timestamp date_time_post) {
+    public String getArea_id() {
+        return area_id;
+    }
+
+    public void setArea_id(String area_id) {
+        this.area_id = area_id;
+    }
+
+    public String getLocality_id() {
+        return locality_id;
+    }
+
+    public void setLocality_id(String locality_id) {
+        this.locality_id = locality_id;
+    }
+
+    public Trouble(Long user_id, String title, String content, JSONArray feed_media, JSONObject location, String area_id, String locality_id, Timestamp datetime_post, Profile user, Integer users_supported, Integer users_rejected, Integer vote_status) {
         this.user_id = user_id;
         this.title = title;
         this.content = content;
-        this.feed_media = media;
+        this.feed_media = feed_media;
         this.location = location;
-        this.place_id = place_id;
-        this.datetime_post = date_time_post;
-    }
-
-    @Override
-    public String toString() {
-        return "Trouble{" +
-                "id=" + id +
-                ", user_id=" + user_id +
-                ", title=" + title +
-                ", content='" + content + '\'' +
-                ", feed_media='" + feed_media + '\'' +
-                ", location=" + location +
-                ", place_id=" + place_id +
-                ", date_time_post=" + datetime_post +
-                '}';
+        this.area_id = area_id;
+        this.locality_id = locality_id;
+        this.datetime_post = datetime_post;
+        this.user = user;
+        this.users_supported = users_supported;
+        this.users_rejected = users_rejected;
+        this.vote_status = vote_status;
     }
 }

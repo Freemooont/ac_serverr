@@ -65,9 +65,7 @@ public class FileUploadController {
 
 
         Upload fileModel = new Upload();
-        System.out.println("<------------------------------------------------------" +
-                "--------------------------------------------: UPLOADED---------------" +
-                "-------------------------------------------------------------------->");
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -147,12 +145,14 @@ public class FileUploadController {
             try {
                 byte[] bytes = file.getBytes();
 
+
                 // Creating the directory to store file
                 String rootPath = System.getProperty("catalina.home");
                 File dir = new File(STORAGE_PATH+"/temp_media/");
 
                 System.out.println(System.getenv("CATALINA_HOME"));
                 System.out.println(STORAGE_PATH);
+
 
                 // Create the file on server
                 File serverFile = new File(dir.getAbsolutePath()

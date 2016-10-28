@@ -1,5 +1,9 @@
 package com.example.controllers.feedControllers;
 
+import com.example.dto.Location;
+import com.example.dto.PlaceIdClient;
+import com.example.dto.PlaceInfo;
+import com.example.dto.PushNotification;
 import com.example.entity.feeds.*;
 import com.example.entity.upload.Upload;
 import com.example.repository.feedRepository.EventRepository;
@@ -11,8 +15,10 @@ import com.example.repository.votesRepository.VoteEventRepository;
 import com.example.repository.votesRepository.VoteSuggestionRepository;
 import com.example.repository.votesRepository.VoteTroubleRepository;
 import com.example.repository.votesRepository.VoteVoluntaryRepository;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+import okhttp3.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,7 +163,7 @@ public class FeedController {
                                      @RequestParam(value = "count", required = false) int count,
                                      @RequestParam(value = "index", required = false) int index) {
         List<Voluntaries> voluntaries = voluntariesRepository.returnByStep(count, index);
-        System.out.println("Catalina home--------------------------------------"+System.getProperty("catalina.base").toString()+"    " +System.getProperty("catalina.home"));
+        System.out.println("Catalina home--------------------------------------" + System.getProperty("catalina.base").toString() + "    " + System.getProperty("catalina.home"));
 
         for (Voluntaries currentVoluntaries : voluntaries) {
             currentVoluntaries.setUsers_joined(voteVoluntaryRepository.getJoined(currentVoluntaries.getId()));
@@ -182,7 +188,7 @@ public class FeedController {
             if (model != null) {
                 if (model.getMedia_type() == 1) {
 
-                    copyFileUsingStream(STORAGE_PATH+"temp_media/" + model.getPath(), STORAGE_PATH+"photos/" + model.getPath());
+                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
                     JSONObject media = new JSONObject();
 
                     media.put("media_name", model.getPath());
@@ -192,7 +198,7 @@ public class FeedController {
 
 
                 } else {
-                    copyFileUsingStream(STORAGE_PATH+"temp_media/" + model.getPath(),STORAGE_PATH+ "videos/" + model.getPath());
+                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
                     JSONObject media = new JSONObject();
                     media.put("media_name", model.getPath());
                     media.put("media_type", model.getMedia_type());
@@ -207,7 +213,34 @@ public class FeedController {
             feed.setFeed_media(feed_media);
         } else feed.setFeed_media(new JSONArray());
 
-        return voluntariesRepository.save(feed);
+        if (feed_media.size() > 0) {
+            feed.setFeed_media(feed_media);
+        } else feed.setFeed_media(new JSONArray());
+
+        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+        Response response = PlaceIdClient.maps(location.getCoordinates());
+        if (response == null) {
+            feed.setLocality_id("unavailable");
+            feed.setArea_id("unavailable");
+        } else {
+            String message = response.body().string();
+            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+
+            if (placeInfo.getResults().size() >= 1) {
+                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
+                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+
+                feed.setLocality_id(result_locality.place_id);
+                feed.setArea_id(result_area.place_id);
+            } else {
+                feed.setLocality_id("unavailable");
+                feed.setArea_id("unavailable");
+            }
+        }
+
+        feed = voluntariesRepository.save(feed);
+        PushNotification.push(feed);
+        return feed;
 
     }
 
@@ -227,7 +260,7 @@ public class FeedController {
             if (model != null) {
                 if (model.getMedia_type() == 1) {
 
-                    copyFileUsingStream(STORAGE_PATH+"temp_media/" + model.getPath(),STORAGE_PATH+ "photos/" + model.getPath());
+                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
                     JSONObject media = new JSONObject();
 
                     media.put("media_name", model.getPath());
@@ -237,7 +270,7 @@ public class FeedController {
 
 
                 } else {
-                    copyFileUsingStream(STORAGE_PATH+"temp_media/" + model.getPath(), STORAGE_PATH+"videos/" + model.getPath());
+                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
                     JSONObject media = new JSONObject();
                     media.put("media_name", model.getPath());
                     media.put("media_type", model.getMedia_type());
@@ -251,7 +284,34 @@ public class FeedController {
         if (feed_media.size() > 0) {
             feed.setFeed_media(feed_media);
         } else feed.setFeed_media(new JSONArray());
-        return troubleRepository.save(feed);
+        if (feed_media.size() > 0) {
+            feed.setFeed_media(feed_media);
+        } else feed.setFeed_media(new JSONArray());
+
+        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+        Response response = PlaceIdClient.maps(location.getCoordinates());
+        if (response == null) {
+            feed.setLocality_id("unavailable");
+            feed.setArea_id("unavailable");
+        } else {
+            String message = response.body().string();
+            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+
+            if (placeInfo.getResults().size() >= 1) {
+                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
+                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+
+                feed.setLocality_id(result_locality.place_id);
+                feed.setArea_id(result_area.place_id);
+            } else {
+                feed.setLocality_id("unavailable");
+                feed.setArea_id("unavailable");
+            }
+        }
+
+        feed = troubleRepository.save(feed);
+        PushNotification.push(feed);
+        return feed;
 
     }
 
@@ -281,7 +341,7 @@ public class FeedController {
 
 
                 } else {
-                    copyFileUsingStream( STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
                     JSONObject media = new JSONObject();
                     media.put("media_name", model.getPath());
                     media.put("media_type", model.getMedia_type());
@@ -295,7 +355,37 @@ public class FeedController {
         if (feed_media.size() > 0) {
             feed.setFeed_media(feed_media);
         } else feed.setFeed_media(new JSONArray());
-        return suggestionRepository.save(feed);
+
+        if (feed_media.size() > 0) {
+            feed.setFeed_media(feed_media);
+        } else feed.setFeed_media(new JSONArray());
+
+        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+        Response response = PlaceIdClient.maps(location.getCoordinates());
+        if (response == null) {
+            feed.setLocality_id("unavailable");
+            feed.setArea_id("unavailable");
+        } else {
+            String message = new String(response.body().bytes());
+            System.out.println("code" + response.code());
+            System.out.println("codewww" + message);
+            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+
+            if (placeInfo.getResults().size() >= 1) {
+                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
+                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+
+                feed.setLocality_id(result_locality.place_id);
+                feed.setArea_id(result_area.place_id);
+            } else {
+                feed.setLocality_id("unavailable");
+                feed.setArea_id("unavailable");
+            }
+        }
+
+        feed = suggestionRepository.save(feed);
+        PushNotification.push(feed);
+        return feed;
 
 
     }
@@ -315,7 +405,7 @@ public class FeedController {
             if (model != null) {
                 if (model.getMedia_type() == 1) {
 
-                    copyFileUsingStream(STORAGE_PATH+"temp_media/" + model.getPath(), STORAGE_PATH+"photos/" + model.getPath());
+                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
                     JSONObject media = new JSONObject();
 
                     media.put("media_name", model.getPath());
@@ -325,7 +415,7 @@ public class FeedController {
 
 
                 } else {
-                    copyFileUsingStream(STORAGE_PATH+"temp_media/" + model.getPath(), STORAGE_PATH+"videos/" + model.getPath());
+                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
                     JSONObject media = new JSONObject();
                     media.put("media_name", model.getPath());
                     media.put("media_type", model.getMedia_type());
@@ -339,7 +429,30 @@ public class FeedController {
             feed.setFeed_media(feed_media);
         } else feed.setFeed_media(new JSONArray());
 
-        return eventRepository.save(feed);
+        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+        Response response = PlaceIdClient.maps(location.getCoordinates());
+        if (response == null) {
+            feed.setLocality_id("unavailable");
+            feed.setArea_id("unavailable");
+        } else {
+            String message = response.body().string();
+            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+
+            if (placeInfo.getResults().size() >= 1) {
+                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
+                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+
+                feed.setLocality_id(result_locality.place_id);
+                feed.setArea_id(result_area.place_id);
+            } else {
+                feed.setLocality_id("unavailable");
+                feed.setArea_id("unavailable");
+            }
+        }
+
+        feed = eventRepository.save(feed);
+        PushNotification.push(feed);
+        return feed;
 
     }
 
