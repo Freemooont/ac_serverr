@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface VoteVoluntaryRepository extends JpaRepository<VoteVoluntarie,Long> {
 
     String JOINS_QUERY = "SELECT count(t.feed_id) FROM cl_vote_voluntaries t WHERE t.feed_id = :feed_id";
-    String USER_VOTE_STATUS = "SELECT count(1) from cl_vote_troubles t where t.feed_id = :feed_id AND t.user_id = :user_id";
+    String USER_VOTE_STATUS = "SELECT count(1) from cl_vote_voluntaries t where t.feed_id = :feed_id AND t.user_id = :user_id";
     String DELETE_VOTE = "DELETE FROM cl_vote_voluntaries t WHERE t.feed_id = :feed_id AND t.user_id = :user_id";
     String CHECK_IF_EXIST = "SELECT * FROM cl_vote_voluntaries t WHERE t.feed_id = :feed_id AND t.user_id = :user_id";
 

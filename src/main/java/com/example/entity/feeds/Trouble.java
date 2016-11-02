@@ -53,6 +53,16 @@ public class Trouble implements Feed{
 
     transient Integer vote_status;
 
+    transient Integer comments_count;
+
+    public Integer getComments_count() {
+        return comments_count;
+    }
+
+    public void setComments_count(Integer comments_count) {
+        this.comments_count = comments_count;
+    }
+
     public Integer getUsers_supported() {
         return users_supported;
     }

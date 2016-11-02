@@ -1,12 +1,10 @@
 package com.example.repository.feedRepository;
 
 import com.example.entity.Profile;
+import com.example.entity.UserTokens;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import static com.example.repository.feedRepository.ProfileRepository.FB_ID;
-import static com.example.repository.feedRepository.ProfileRepository.SELECT_USER;
 
 
 public interface ProfileRepository extends JpaRepository<Profile,Long> {
@@ -18,4 +16,6 @@ public interface ProfileRepository extends JpaRepository<Profile,Long> {
 
     @Query(value = SELECT_USER, nativeQuery = true)
     Profile slectUser(@Param("fb_id") Long fb_id);
+
+
 }

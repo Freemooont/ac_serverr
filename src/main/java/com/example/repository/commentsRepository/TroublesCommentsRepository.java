@@ -8,15 +8,28 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+import static com.example.repository.commentsRepository.TroublesCommentsRepository.COMMENTS_BY_STEP;
+
 
 public interface TroublesCommentsRepository extends JpaRepository<TroublesComments, Long>{
 
-    String COMMENTS_BY_STEP = "select * from cl_troubles_comments t where t.feed_id = :feed_id AND t.user_id = :user_id limit :nr_of_comments offset :offset ";
+    String COMMENTS_BY_STEP_WITH_USER = "select * from cl_troubles_comments t where t.feed_id = :feed_id AND t.user_id = :user_id limit :nr_of_comments offset :offset ";
+    String COMMENTS_BY_STEP = "select * from cl_troubles_comments t where t.feed_id = :feed_id ORDER BY datetime_post DESC limit :nr_of_comments offset :offset ";
+    String NUMBER_OF_COMMENTS = "select count(c.id) from cl_troubles_comments c where c.feed_id = :feed_id";
 
 
-    @Query(value = COMMENTS_BY_STEP,nativeQuery = true)
-    List<EventComments> getTroubleComments(@Param("nr_of_comments") int nr_of_comments,
+    @Query(value = COMMENTS_BY_STEP_WITH_USER,nativeQuery = true)
+    List<TroublesComments> getTroubleComments(@Param("nr_of_comments") int nr_of_comments,
                                            @Param("feed_id") Long feed_id,
                                            @Param("user_id") Long user_id,
                                            @Param("offset") int index);
+
+    @Query(value = COMMENTS_BY_STEP, nativeQuery = true)
+    List<TroublesComments> getTroubleComments(@Param("nr_of_comments") int nr_of_comments,
+                                              @Param("feed_id") Long feed_id,
+                                              @Param("offset") int index);
+
+    @Query(value = NUMBER_OF_COMMENTS, nativeQuery = true)
+    Integer numberOfComments(@Param("feed_id") Long feed_id);
 }
+

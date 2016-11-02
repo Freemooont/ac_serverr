@@ -1,7 +1,9 @@
 package com.example.controllers.feedControllers;
 
 import com.example.entity.Profile;
+import com.example.entity.UserTokens;
 import com.example.repository.feedRepository.ProfileRepository;
+import com.example.repository.feedRepository.TokenRepository;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +19,12 @@ public class ProfileController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProfileController.class);
 
     ProfileRepository profileRepository;
+    TokenRepository tokenRepository;
 
     @Autowired
-    public ProfileController(ProfileRepository profileRepository) {
+    public ProfileController(ProfileRepository profileRepository, TokenRepository tokenRepository) {
         this.profileRepository = profileRepository;
+        this.tokenRepository = tokenRepository;
     }
 
     @RequestMapping(path = "/getall", method = RequestMethod.GET )
@@ -35,20 +39,37 @@ public class ProfileController {
         return profileRepository.findOne(id);
     }
 
+
+
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
     Profile insert(@RequestBody Profile profile){
 
         Profile existing = profileRepository.slectUser(profile.getFb_id());
 
-        if (existing != null) {
-            if(!profile.getMobile_token().equals(existing.getMobile_token())) {
-                existing.setMobile_token(profile.getMobile_token());
-                return profileRepository.save(existing);
-            }
-           return existing;
+        if (existing == null) {
+            profile.setSettings(new JSONObject());
+            existing = profileRepository.save(profile);
         }
-        profile.setSettings(new JSONObject());
-        return profileRepository.save(profile);
+
+        String token = profile.getMobile_token();
+        if(!token.equals("web")){
+            UserTokens user_token = tokenRepository.findToken(token);
+
+            if(user_token == null){
+                user_token = new UserTokens(token, existing.getId());
+                tokenRepository.save(user_token);
+                existing.setMobile_token(String.valueOf(user_token.getId()));
+            } else {
+                if(existing.getId() != user_token.getUser_id()){
+                    user_token.setUser_id(existing.getId());
+                    tokenRepository.save(user_token);
+                    existing.setMobile_token(String.valueOf(user_token.getId()));
+                }
+            }
+
+        }
+
+        return existing;
     }
 
     @RequestMapping(path = "/delete/{id}",method = RequestMethod.POST)

@@ -25,6 +25,8 @@ public class ExampleApplication extends SpringBootServletInitializer {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/application-context.xml");
 	}
 
+
+
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return super.configure(builder);

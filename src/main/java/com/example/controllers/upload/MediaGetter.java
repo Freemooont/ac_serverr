@@ -83,6 +83,7 @@ public class MediaGetter {
                 } catch (IllegalArgumentException ignore) {
                     ranges.add(full);
                 }
+                response.flushBuffer();
             }
             // If any valid If-Range header, then process each part of byte range.
             if (ranges.isEmpty()) {
@@ -108,8 +109,10 @@ public class MediaGetter {
 
                     // Add range.
                     ranges.add(new Range(start, end, length));
+                    response.flushBuffer();
                 }
             }
+            response.flushBuffer();
         }
         // Prepare and initialize response --------------------------------------------------------
 
@@ -156,7 +159,7 @@ public class MediaGetter {
         RandomAccessFile input = null;
         OutputStream output = null;
 
-        try{
+        try {
 
             // Open streams.
             input = new RandomAccessFile(new File(STORAGE_PATH + "/videos/" + name), "r");
@@ -169,18 +172,18 @@ public class MediaGetter {
                 response.setContentType(contentType);
 
                 /*if (content) {*/
-                    if (acceptsGzip) {
-                        // The browser accepts GZIP, so GZIP the content.
-                        response.setHeader("Content-Encoding", "gzip");
-                        output = new GZIPOutputStream(output, DEFAULT_BUFFER_SIZE);
-                    } else {
-                        // Content length is not directly predictable in case of GZIP.
-                        // So only add it if there is no means of GZIP, else browser will hang.
-                        response.setHeader("Content-Length", String.valueOf(r.length));
-                    }
+                if (acceptsGzip) {
+                    // The browser accepts GZIP, so GZIP the content.
+                    response.setHeader("Content-Encoding", "gzip");
+                    output = new GZIPOutputStream(output, DEFAULT_BUFFER_SIZE);
+                } else {
+                    // Content length is not directly predictable in case of GZIP.
+                    // So only add it if there is no means of GZIP, else browser will hang.
+                    response.setHeader("Content-Length", String.valueOf(r.length));
+                }
 
-                    // Copy full range.
-                    copy(input, output, r.start, r.length);
+                // Copy full range.
+                copy(input, output, r.start, r.length);
                 //}
 
             } else if (ranges.size() == 1) {
@@ -193,8 +196,9 @@ public class MediaGetter {
                 response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT); // 206.
 
                 /*if (content) {*/
-                    // Copy single part range.
-                    copy(input, output, r.start, r.length);
+                // Copy single part range.
+                copy(input, output, r.start, r.length);
+                response.flushBuffer();
                 //}
 
             } else {
@@ -204,30 +208,32 @@ public class MediaGetter {
                 response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT); // 206.
 
                /* if (content) {*/
-                    // Cast back to ServletOutputStream to get the easy println methods.
-                    ServletOutputStream sos = (ServletOutputStream) output;
+                // Cast back to ServletOutputStream to get the easy println methods.
+                ServletOutputStream sos = (ServletOutputStream) output;
 
-                    // Copy multi part range.
-                    for (Range r : ranges) {
-                        // Add multipart boundary and header fields for every range.
-                        sos.println();
-                        sos.println("--" + MULTIPART_BOUNDARY);
-                        sos.println("Content-Type: " + contentType);
-                        sos.println("Content-Range: bytes " + r.start + "-" + r.end + "/" + r.total);
-
-                        // Copy single part range of multi part range.
-                        copy(input, output, r.start, r.length);
-                    }
-
-                    // End with multipart boundary.
+                // Copy multi part range.
+                for (Range r : ranges) {
+                    // Add multipart boundary and header fields for every range.
                     sos.println();
-                    sos.println("--" + MULTIPART_BOUNDARY + "--");
+                    sos.println("--" + MULTIPART_BOUNDARY);
+                    sos.println("Content-Type: " + contentType);
+                    sos.println("Content-Range: bytes " + r.start + "-" + r.end + "/" + r.total);
+
+                    // Copy single part range of multi part range.
+                    copy(input, output, r.start, r.length);
+                }
+
+                // End with multipart boundary.
+                sos.println();
+                sos.println("--" + MULTIPART_BOUNDARY + "--");
                 //}
             }
+            response.flushBuffer();
 
-        }finally {
+        } finally {
             close(output);
             close(input);
+            response.flushBuffer();
         }
 
 
@@ -242,9 +248,9 @@ public class MediaGetter {
         String substring = value.substring(beginIndex, endIndex);
         return (substring.length() > 0) ? Long.parseLong(substring) : -1;
     }
+
     private static void copy(RandomAccessFile input, OutputStream output, long start, long length)
-            throws IOException
-    {
+            throws IOException {
         byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
         int read;
 
@@ -268,6 +274,7 @@ public class MediaGetter {
             }
         }
     }
+
     private static void close(Closeable resource) {
         if (resource != null) {
             try {

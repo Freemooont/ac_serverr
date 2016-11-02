@@ -5,6 +5,9 @@
       <root url="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject-tck/1/javax.inject-tck-1.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.7/junit-4.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject-tck/1/javax.inject-tck-1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.7/junit-4.7.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

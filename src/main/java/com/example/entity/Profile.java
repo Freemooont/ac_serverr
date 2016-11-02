@@ -32,20 +32,7 @@ public class Profile {
     @Column(name = "avatar",nullable =false)
     String avatar;
 
-    @Column(name = "mobile_token",nullable =false)
-    String mobile_token;
-
-    /*@OneToMany
-    private Event events;
-
-    @OneToMany(mappedBy = "profile_id",cascade = CascadeType.ALL)
-    public Event getEvents() {
-        return events;
-    }
-
-    public void setEvents(Event events) {
-        this.events = events;
-    }*/
+    transient String mobile_token;
 
     public Long getId() {
         return id;
@@ -99,6 +86,12 @@ public class Profile {
     public Profile() {
     }
 
+    public Profile(String first_name, String last_name, String avatar) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.avatar = avatar;
+    }
+
     public JSONObject getSettings() {
         return settings;
     }
@@ -107,13 +100,13 @@ public class Profile {
         this.settings = settings;
     }
 
-    public Profile(String first_name, String last_name, Long fb_id, JSONObject settings, String avatar, String mobile_token) {
+    public Profile(Long id, String first_name, String last_name, Long fb_id, JSONObject settings, String avatar) {
+        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.fb_id = fb_id;
         this.settings = settings;
         this.avatar = avatar;
-        this.mobile_token = mobile_token;
     }
 
     @Override

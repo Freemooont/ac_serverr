@@ -6,6 +6,10 @@ import com.example.dto.PlaceInfo;
 import com.example.dto.PushNotification;
 import com.example.entity.feeds.*;
 import com.example.entity.upload.Upload;
+import com.example.repository.commentsRepository.EventsCommentsRepository;
+import com.example.repository.commentsRepository.SuggestionsCommentsRepository;
+import com.example.repository.commentsRepository.TroublesCommentsRepository;
+import com.example.repository.commentsRepository.VoluntariesCommentsRepository;
 import com.example.repository.feedRepository.EventRepository;
 import com.example.repository.feedRepository.SuggestionRepository;
 import com.example.repository.feedRepository.TroubleRepository;
@@ -39,8 +43,13 @@ public class FeedController {
     VoteVoluntaryRepository voteVoluntaryRepository;
     VoteTroubleRepository voteTroubleRepository;
     UploadRepository uploadRepository;
+    EventsCommentsRepository eventsCommentsRepository;
+    TroublesCommentsRepository troublesCommentsRepository;
+    VoluntariesCommentsRepository voluntariesCommentsRepository;
+    SuggestionsCommentsRepository suggestionsCommentsRepository;
 
     public static String STORAGE_PATH = "/opt/tomcat/storage/";
+
 
     @Autowired
     public FeedController(EventRepository eventRepository,
@@ -51,7 +60,11 @@ public class FeedController {
                           VoteSuggestionRepository voteSuggestionRepository,
                           VoteVoluntaryRepository voteVoluntaryRepository,
                           VoteTroubleRepository voteTroubleRepository,
-                          UploadRepository uploadRepository) {
+                          UploadRepository uploadRepository,
+                          EventsCommentsRepository eventsCommentsRepository,
+                          TroublesCommentsRepository troublesCommentsRepository,
+                          VoluntariesCommentsRepository voluntariesCommentsRepository,
+                          SuggestionsCommentsRepository suggestionsCommentsRepository) {
         this.eventRepository = eventRepository;
         this.suggestionRepository = suggestionRepository;
         this.troubleRepository = troubleRepository;
@@ -61,7 +74,17 @@ public class FeedController {
         this.voteVoluntaryRepository = voteVoluntaryRepository;
         this.voteTroubleRepository = voteTroubleRepository;
         this.uploadRepository = uploadRepository;
+        this.eventsCommentsRepository = eventsCommentsRepository;
+        this.troublesCommentsRepository = troublesCommentsRepository;
+        this.voluntariesCommentsRepository = voluntariesCommentsRepository;
+        this.suggestionsCommentsRepository = suggestionsCommentsRepository;
     }
+
+
+
+
+
+
 
 
     @RequestMapping(path = "/get", method = RequestMethod.GET)
@@ -117,6 +140,7 @@ public class FeedController {
             currentEvent.setUsers_interested(voteEventRepository.getInterested(currentEvent.getId()));
             currentEvent.setUsers_joined(voteEventRepository.getJoined(currentEvent.getId()));
             currentEvent.setVote_status(voteEventRepository.getStatusVote(currentEvent.getId(), user_id));
+            currentEvent.setComments_count(eventsCommentsRepository.numberOfComments(currentEvent.getId()));
         }
         return events;
     }
@@ -135,6 +159,7 @@ public class FeedController {
             currentSuggestion.setUsers_supported(voteSuggestionRepository.getSupported(currentSuggestion.getId()));
             currentSuggestion.setUsers_rejected(voteSuggestionRepository.getRejected(currentSuggestion.getId()));
             currentSuggestion.setVote_status(voteSuggestionRepository.getStatusVote(currentSuggestion.getId(), user_id));
+            currentSuggestion.setComments_count((suggestionsCommentsRepository.numberOfComments(currentSuggestion.getId())));
         }
         return suggestions;
     }
@@ -153,6 +178,7 @@ public class FeedController {
             currentTrouble.setUsers_supported(voteTroubleRepository.getSupported(currentTrouble.getId()));
             currentTrouble.setUsers_rejected(voteTroubleRepository.getRejected(currentTrouble.getId()));
             currentTrouble.setVote_status(voteTroubleRepository.getStatusVote(currentTrouble.getId(), user_id));
+            currentTrouble.setComments_count((troublesCommentsRepository.numberOfComments(currentTrouble.getId())));
         }
         return troubles;
     }
@@ -168,6 +194,7 @@ public class FeedController {
         for (Voluntaries currentVoluntaries : voluntaries) {
             currentVoluntaries.setUsers_joined(voteVoluntaryRepository.getJoined(currentVoluntaries.getId()));
             currentVoluntaries.setVote_status(voteVoluntaryRepository.getStatusVote(currentVoluntaries.getId(), user_id));
+            currentVoluntaries.setComments_count(voluntariesCommentsRepository.numberOfComments(currentVoluntaries.getId()));
         }
         return voluntaries;
     }
@@ -395,7 +422,7 @@ public class FeedController {
     /********************************************************************/
     @RequestMapping(path = "feeds/postFeed4", method = RequestMethod.POST)
     @ResponseBody
-    Event insertEvent(@RequestBody Event feed) throws IOException {
+    Event insertEvent(@RequestBody Event feed) throws Exception {
         JSONArray jsonElements = feed.getFeed_media();
         JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
         JSONArray feed_media = new JSONArray();
@@ -405,7 +432,12 @@ public class FeedController {
             if (model != null) {
                 if (model.getMedia_type() == 1) {
 
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                    try {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        throw new Exception("Error with moving photo...", e);
+                    }
                     JSONObject media = new JSONObject();
 
                     media.put("media_name", model.getPath());
@@ -415,7 +447,12 @@ public class FeedController {
 
 
                 } else {
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                    try {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        throw new Exception("Error with moving video...", e);
+                    }
                     JSONObject media = new JSONObject();
                     media.put("media_name", model.getPath());
                     media.put("media_type", model.getMedia_type());
@@ -435,7 +472,13 @@ public class FeedController {
             feed.setLocality_id("unavailable");
             feed.setArea_id("unavailable");
         } else {
-            String message = response.body().string();
+            String message = null;
+            try {
+                message = response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new Exception("Invalid message for response");
+            }
             PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
 
             if (placeInfo.getResults().size() >= 1) {
@@ -455,20 +498,6 @@ public class FeedController {
         return feed;
 
     }
-
-    /*private void checkAvailableFolders() {
-        File photo = new File("photos/");
-        File video = new File("videos/");
-
-        if(!photo.exists())
-        {
-            photo.mkdir();
-        }
-
-        if(!video.exists()){
-            video.mkdir();
-        }
-    }*/
 
     private static void copyFileUsingStream(String source, String dest) throws IOException {
         InputStream is = null;
