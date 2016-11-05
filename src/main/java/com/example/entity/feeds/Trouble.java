@@ -2,7 +2,7 @@ package com.example.entity.feeds;
 
 import com.example.configs.JpaArrayConverter;
 import com.example.configs.JpaConverterJson;
-import com.example.entity.Profile;
+import com.example.entity.user.Profile;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 

@@ -1,6 +1,6 @@
 package com.example.services;
 
-import com.example.entity.Profile;
+import com.example.entity.user.Profile;
 
 /**
  * Created by freem on 8/26/16.

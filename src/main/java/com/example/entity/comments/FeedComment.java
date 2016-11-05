@@ -1,10 +1,8 @@
 package com.example.entity.comments;
 
-import com.example.entity.Profile;
+import com.example.entity.user.Profile;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.concurrent.TransferQueue;
 
 /**
  * Created by mike on 11/2/16.

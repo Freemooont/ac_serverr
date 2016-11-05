@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.entity.user;
 
 import com.example.configs.JpaConverterJson;
 import org.json.simple.JSONObject;
@@ -24,10 +24,6 @@ public class Profile {
 
     @Column(name = "fb_id",nullable =false)
     Long fb_id;
-
-    @Convert(converter = JpaConverterJson.class)
-    @Column(name = "settings",nullable =false)
-    JSONObject settings;
 
     @Column(name = "avatar",nullable =false)
     String avatar;
@@ -92,20 +88,14 @@ public class Profile {
         this.avatar = avatar;
     }
 
-    public JSONObject getSettings() {
-        return settings;
-    }
 
-    public void setSettings(JSONObject settings) {
-        this.settings = settings;
-    }
 
     public Profile(Long id, String first_name, String last_name, Long fb_id, JSONObject settings, String avatar) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.fb_id = fb_id;
-        this.settings = settings;
+
         this.avatar = avatar;
     }
 
@@ -116,7 +106,6 @@ public class Profile {
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", fb_id=" + fb_id +
-                ", settings='" + settings + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", mobile_token='" + mobile_token + '\'' +
                 '}';

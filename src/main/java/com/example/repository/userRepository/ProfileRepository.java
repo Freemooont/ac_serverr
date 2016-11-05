@@ -1,7 +1,6 @@
-package com.example.repository.feedRepository;
+package com.example.repository.userRepository;
 
-import com.example.entity.Profile;
-import com.example.entity.UserTokens;
+import com.example.entity.user.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

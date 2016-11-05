@@ -1,6 +1,6 @@
 package com.example.entity.comments;
 
-import com.example.entity.Profile;
+import com.example.entity.user.Profile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

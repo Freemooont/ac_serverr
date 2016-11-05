@@ -1,9 +1,6 @@
 package com.example.controllers.feedControllers;
 
-import com.example.dto.Location;
-import com.example.dto.PlaceIdClient;
-import com.example.dto.PlaceInfo;
-import com.example.dto.PushNotification;
+import com.example.dto.*;
 import com.example.entity.feeds.*;
 import com.example.entity.upload.Upload;
 import com.example.repository.commentsRepository.EventsCommentsRepository;
@@ -46,7 +43,7 @@ public class FeedController {
     EventsCommentsRepository eventsCommentsRepository;
     TroublesCommentsRepository troublesCommentsRepository;
     VoluntariesCommentsRepository voluntariesCommentsRepository;
-    SuggestionsCommentsRepository suggestionsCommentsRepository;
+    private SuggestionsCommentsRepository suggestionsCommentsRepository;
 
     public static String STORAGE_PATH = "/opt/tomcat/storage/";
 
@@ -251,11 +248,11 @@ public class FeedController {
             feed.setArea_id("unavailable");
         } else {
             String message = response.body().string();
-            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+            Places placeInfo = new Gson().fromJson(message, Places.class);
 
             if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
-                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+                PlaceInfo result_locality = placeInfo.getResults().get(0);
+                PlaceInfo result_area = placeInfo.getResults().get(1);
 
                 feed.setLocality_id(result_locality.place_id);
                 feed.setArea_id(result_area.place_id);
@@ -322,11 +319,11 @@ public class FeedController {
             feed.setArea_id("unavailable");
         } else {
             String message = response.body().string();
-            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+            Places placeInfo = new Gson().fromJson(message, Places.class);
 
             if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
-                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+                PlaceInfo result_locality = placeInfo.getResults().get(0);
+                PlaceInfo result_area = placeInfo.getResults().get(1);
 
                 feed.setLocality_id(result_locality.place_id);
                 feed.setArea_id(result_area.place_id);
@@ -396,11 +393,11 @@ public class FeedController {
             String message = new String(response.body().bytes());
             System.out.println("code" + response.code());
             System.out.println("codewww" + message);
-            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+            Places placeInfo = new Gson().fromJson(message, Places.class);
 
             if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
-                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+                PlaceInfo result_locality = placeInfo.getResults().get(0);
+                PlaceInfo result_area = placeInfo.getResults().get(1);
 
                 feed.setLocality_id(result_locality.place_id);
                 feed.setArea_id(result_area.place_id);
@@ -479,11 +476,11 @@ public class FeedController {
                 e.printStackTrace();
                 throw new Exception("Invalid message for response");
             }
-            PlaceInfo placeInfo = new Gson().fromJson(message, PlaceInfo.class);
+            Places placeInfo = new Gson().fromJson(message, Places.class);
 
             if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo.Result result_locality = placeInfo.getResults().get(0);
-                PlaceInfo.Result result_area = placeInfo.getResults().get(1);
+                PlaceInfo result_locality = placeInfo.getResults().get(0);
+                PlaceInfo result_area = placeInfo.getResults().get(1);
 
                 feed.setLocality_id(result_locality.place_id);
                 feed.setArea_id(result_area.place_id);

@@ -1,9 +1,11 @@
-package com.example.controllers.feedControllers;
+package com.example.controllers.userController;
 
-import com.example.entity.Profile;
-import com.example.entity.UserTokens;
-import com.example.repository.feedRepository.ProfileRepository;
-import com.example.repository.feedRepository.TokenRepository;
+import com.example.entity.user.Profile;
+import com.example.entity.user.Settings;
+import com.example.entity.user.UserTokens;
+import com.example.repository.userRepository.ProfileRepository;
+import com.example.repository.userRepository.SettingsRepository;
+import com.example.repository.userRepository.TokenRepository;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,47 +22,48 @@ public class ProfileController {
 
     ProfileRepository profileRepository;
     TokenRepository tokenRepository;
+    SettingsRepository settings;
 
     @Autowired
-    public ProfileController(ProfileRepository profileRepository, TokenRepository tokenRepository) {
+    public ProfileController(ProfileRepository profileRepository, TokenRepository tokenRepository,
+                             SettingsRepository settings) {
         this.profileRepository = profileRepository;
         this.tokenRepository = tokenRepository;
+        this.settings = settings;
     }
 
-    @RequestMapping(path = "/getall", method = RequestMethod.GET )
+    @RequestMapping(path = "/getall", method = RequestMethod.GET)
     @ResponseBody
-    List<Profile> getAll(){
+    List<Profile> getAll() {
         return profileRepository.findAll();
     }
 
-    @RequestMapping(path = "/getbyid/{id}",method = RequestMethod.GET)
+    @RequestMapping(path = "/getbyid/{id}", method = RequestMethod.GET)
     @ResponseBody
-    Profile getOne(@PathVariable Long id){
+    Profile getOne(@PathVariable Long id) {
         return profileRepository.findOne(id);
     }
 
 
-
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
-    Profile insert(@RequestBody Profile profile){
+    Profile insert(@RequestBody Profile profile) {
 
         Profile existing = profileRepository.slectUser(profile.getFb_id());
 
         if (existing == null) {
-            profile.setSettings(new JSONObject());
             existing = profileRepository.save(profile);
         }
 
         String token = profile.getMobile_token();
-        if(!token.equals("web")){
+        if (!token.equals("web")) {
             UserTokens user_token = tokenRepository.findToken(token);
 
-            if(user_token == null){
+            if (user_token == null) {
                 user_token = new UserTokens(token, existing.getId());
                 tokenRepository.save(user_token);
                 existing.setMobile_token(String.valueOf(user_token.getId()));
             } else {
-                if(existing.getId() != user_token.getUser_id()){
+                if (existing.getId() != user_token.getUser_id()) {
                     user_token.setUser_id(existing.getId());
                     tokenRepository.save(user_token);
                     existing.setMobile_token(String.valueOf(user_token.getId()));
@@ -72,11 +75,10 @@ public class ProfileController {
         return existing;
     }
 
-    @RequestMapping(path = "/delete/{id}",method = RequestMethod.POST)
-    public void deleteProfile(@PathVariable Long id){
+    @RequestMapping(path = "/delete/{id}", method = RequestMethod.POST)
+    public void deleteProfile(@PathVariable Long id) {
         profileRepository.delete(id);
     }
-
 
 
 }

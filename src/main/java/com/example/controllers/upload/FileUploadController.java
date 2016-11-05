@@ -137,7 +137,7 @@ public class FileUploadController {
     JSONArray uploadMultipleFileHandler(@RequestParam("media") MultipartFile[] files) {
         checkStorgeFolders();
         String message = "";
-        System.out.println(files.length + "Lungiiiiiiiiiiiiiime");
+        System.out.println(files.length + " files come");
         JSONArray array = new JSONArray();
         for (int i = 0; i < files.length; i++) {
             Upload fileModel = new Upload();

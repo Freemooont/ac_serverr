@@ -1,6 +1,6 @@
 package com.example.controllers.commentsControllers;
 
-import com.example.entity.Profile;
+import com.example.entity.user.Profile;
 import com.example.entity.comments.*;
 import com.example.repository.commentsRepository.EventsCommentsRepository;
 import com.example.repository.commentsRepository.SuggestionsCommentsRepository;

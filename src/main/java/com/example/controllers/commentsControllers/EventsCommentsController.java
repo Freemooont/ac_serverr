@@ -2,7 +2,7 @@ package com.example.controllers.commentsControllers;
 
 import com.example.entity.comments.EventComments;
 import com.example.repository.commentsRepository.EventsCommentsRepository;
-import com.example.repository.feedRepository.ProfileRepository;
+import com.example.repository.userRepository.ProfileRepository;
 import com.example.repository.votesRepository.VoteEventRepository;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;

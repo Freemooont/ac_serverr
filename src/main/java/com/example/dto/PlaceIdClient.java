@@ -7,7 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 import java.io.IOException;
 
-import static com.example.dto.PlaceInfo.TYPE_ALL;
+import static com.example.dto.Places.TYPE_ALL;
 
 /**
  * Created by freem on 10/26/16.
@@ -29,7 +29,7 @@ public class PlaceIdClient {
         Response response=null;
         try {
             response = client.newCall(request).execute();
-            //PlaceInfo placeInfo = new Gson().fromJson(respose,PlaceInfo.class);
+            //Places placeInfo = new Gson().fromJson(respose,Places.class);
             //System.out.println(respose);
             //System.out.println(placeInfo.results.get(0).getFormattedAddress());
         } catch (IOException e) {

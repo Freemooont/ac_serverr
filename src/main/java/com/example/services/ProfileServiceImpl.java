@@ -1,7 +1,7 @@
 package com.example.services;
 
-import com.example.entity.Profile;
-import com.example.repository.feedRepository.ProfileRepository;
+import com.example.entity.user.Profile;
+import com.example.repository.userRepository.ProfileRepository;
 import com.example.services.exception.UserAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
