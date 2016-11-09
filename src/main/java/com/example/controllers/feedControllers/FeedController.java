@@ -1,5 +1,6 @@
 package com.example.controllers.feedControllers;
 
+import com.example.UtilConstants;
 import com.example.dto.*;
 import com.example.entity.feeds.*;
 import com.example.entity.upload.Upload;
@@ -78,16 +79,22 @@ public class FeedController {
     }
 
 
-
-
-
-
-
-
-    @RequestMapping(path = "/get", method = RequestMethod.GET)
+    @RequestMapping(path = "/getFeedById", method = RequestMethod.POST)
     @ResponseBody
-    Event getEvents(@RequestParam("id") Long id) {
-        return eventRepository.findOne(id);
+    <T extends Feed> T getFeedById(@RequestParam("feed_id") Long id, @RequestParam("feed_type") int type) {
+        switch (type) {
+            case 1:
+                return (T) voluntariesRepository.findOne(id);
+            case 2:
+                return (T) troubleRepository.findOne(id);
+            case 3:
+                return (T) suggestionRepository.findOne(id);
+            case 4:
+                return (T) eventRepository.findOne(id);
+            default:
+                return (T) new Object();
+
+        }
     }
 
 
@@ -202,69 +209,73 @@ public class FeedController {
     /********************************************************************/
     @RequestMapping(path = "feeds/postFeed1", method = RequestMethod.POST)
     @ResponseBody
-    Voluntaries insertVountary(@RequestBody Voluntaries feed) throws IOException {
-        JSONArray jsonElements = feed.getFeed_media();
-        JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
-        JSONArray feed_media = new JSONArray();
-
-        for (int i = 0; i < jsonElements.size(); i++) {
-            Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
-            if (model != null) {
-                if (model.getMedia_type() == 1) {
-
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
-                    JSONObject media = new JSONObject();
-
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-
-
-                } else {
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
-                    JSONObject media = new JSONObject();
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-                }
-
-            }
-        }
-
-        if (feed_media.size() > 0) {
-            feed.setFeed_media(feed_media);
-        } else feed.setFeed_media(new JSONArray());
-
-        if (feed_media.size() > 0) {
-            feed.setFeed_media(feed_media);
-        } else feed.setFeed_media(new JSONArray());
-
-        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
-        Response response = PlaceIdClient.maps(location.getCoordinates());
-        if (response == null) {
-            feed.setLocality_id("unavailable");
-            feed.setArea_id("unavailable");
+    JSONObject insertVountary(@RequestBody Voluntaries feed, @RequestParam("token_id") long token) throws IOException {
+        if (!FeedValidator.validate(feed)) {
+            return UtilConstants.getResponseStatus(UtilConstants.INVALID_CONTENT);
         } else {
-            String message = response.body().string();
-            Places placeInfo = new Gson().fromJson(message, Places.class);
+            JSONArray jsonElements = feed.getFeed_media();
+            JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
+            JSONArray feed_media = new JSONArray();
 
-            if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo result_locality = placeInfo.getResults().get(0);
-                PlaceInfo result_area = placeInfo.getResults().get(1);
+            for (int i = 0; i < jsonElements.size(); i++) {
+                Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
+                if (model != null) {
+                    if (model.getMedia_type() == 1) {
 
-                feed.setLocality_id(result_locality.place_id);
-                feed.setArea_id(result_area.place_id);
-            } else {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                        JSONObject media = new JSONObject();
+
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+
+
+                    } else {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                        JSONObject media = new JSONObject();
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+                    }
+
+                }
+            }
+
+            if (feed_media.size() > 0) {
+                feed.setFeed_media(feed_media);
+            } else feed.setFeed_media(new JSONArray());
+
+            if (feed_media.size() > 0) {
+                feed.setFeed_media(feed_media);
+            } else feed.setFeed_media(new JSONArray());
+
+            Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+            Response response = PlaceIdClient.maps(location.getCoordinates());
+            if (response == null) {
                 feed.setLocality_id("unavailable");
                 feed.setArea_id("unavailable");
-            }
-        }
+            } else {
+                String message = response.body().string();
+                Places placeInfo = new Gson().fromJson(message, Places.class);
 
-        feed = voluntariesRepository.save(feed);
-        PushNotification.push(feed);
-        return feed;
+                if (placeInfo.getResults().size() >= 1) {
+                    PlaceInfo result_locality = placeInfo.getResults().get(0);
+                    PlaceInfo result_area = placeInfo.getResults().get(1);
+
+                    feed.setLocality_id(result_locality.place_id);
+                    feed.setArea_id(result_area.place_id);
+                } else {
+                    feed.setLocality_id("unavailable");
+                    feed.setArea_id("unavailable");
+                }
+            }
+
+            feed = voluntariesRepository.save(feed);
+            PushNotification.push(feed, token);
+            return UtilConstants.getResponseStatus(UtilConstants.OK);
+        }
 
     }
 
@@ -274,69 +285,73 @@ public class FeedController {
     /********************************************************************/
     @RequestMapping(path = "feeds/postFeed2", method = RequestMethod.POST)
     @ResponseBody
-    Trouble insertTrouble(@RequestBody Trouble feed) throws IOException {
-        JSONArray jsonElements = feed.getFeed_media();
-        JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
-        JSONArray feed_media = new JSONArray();
-
-        for (int i = 0; i < jsonElements.size(); i++) {
-            Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
-            if (model != null) {
-                if (model.getMedia_type() == 1) {
-
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
-                    JSONObject media = new JSONObject();
-
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-
-
-                } else {
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
-                    JSONObject media = new JSONObject();
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-                }
-
-            }
-        }
-
-        if (feed_media.size() > 0) {
-            feed.setFeed_media(feed_media);
-        } else feed.setFeed_media(new JSONArray());
-        if (feed_media.size() > 0) {
-            feed.setFeed_media(feed_media);
-        } else feed.setFeed_media(new JSONArray());
-
-        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
-        Response response = PlaceIdClient.maps(location.getCoordinates());
-        if (response == null) {
-            feed.setLocality_id("unavailable");
-            feed.setArea_id("unavailable");
+    JSONObject insertTrouble(@RequestBody Trouble feed, @RequestParam("token_id") long token) throws IOException {
+        if (!FeedValidator.validate(feed)) {
+            return UtilConstants.getResponseStatus(UtilConstants.INVALID_CONTENT);
         } else {
-            String message = response.body().string();
-            Places placeInfo = new Gson().fromJson(message, Places.class);
+            JSONArray jsonElements = feed.getFeed_media();
+            JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
+            JSONArray feed_media = new JSONArray();
 
-            if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo result_locality = placeInfo.getResults().get(0);
-                PlaceInfo result_area = placeInfo.getResults().get(1);
+            for (int i = 0; i < jsonElements.size(); i++) {
+                Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
+                if (model != null) {
+                    if (model.getMedia_type() == 1) {
 
-                feed.setLocality_id(result_locality.place_id);
-                feed.setArea_id(result_area.place_id);
-            } else {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                        JSONObject media = new JSONObject();
+
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+
+
+                    } else {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                        JSONObject media = new JSONObject();
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+                    }
+
+                }
+            }
+
+            if (feed_media.size() > 0) {
+                feed.setFeed_media(feed_media);
+            } else feed.setFeed_media(new JSONArray());
+            if (feed_media.size() > 0) {
+                feed.setFeed_media(feed_media);
+            } else feed.setFeed_media(new JSONArray());
+
+            Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+            Response response = PlaceIdClient.maps(location.getCoordinates());
+            if (response == null) {
                 feed.setLocality_id("unavailable");
                 feed.setArea_id("unavailable");
+            } else {
+                String message = response.body().string();
+                Places placeInfo = new Gson().fromJson(message, Places.class);
+
+                if (placeInfo.getResults().size() >= 1) {
+                    PlaceInfo result_locality = placeInfo.getResults().get(0);
+                    PlaceInfo result_area = placeInfo.getResults().get(1);
+
+                    feed.setLocality_id(result_locality.place_id);
+                    feed.setArea_id(result_area.place_id);
+                } else {
+                    feed.setLocality_id("unavailable");
+                    feed.setArea_id("unavailable");
+                }
             }
+
+            feed = troubleRepository.save(feed);
+            PushNotification.push(feed, token);
+            return UtilConstants.getResponseStatus(UtilConstants.OK);
+
         }
-
-        feed = troubleRepository.save(feed);
-        PushNotification.push(feed);
-        return feed;
-
     }
 
     /********************************************************************/
@@ -345,72 +360,76 @@ public class FeedController {
     /********************************************************************/
     @RequestMapping(path = "feeds/postFeed3", method = RequestMethod.POST)
     @ResponseBody
-    Suggestion insertSuggestion(@RequestBody Suggestion feed) throws IOException {
-        JSONArray jsonElements = feed.getFeed_media();
-        JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
-        JSONArray feed_media = new JSONArray();
-
-        for (int i = 0; i < jsonElements.size(); i++) {
-            Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
-            if (model != null) {
-                if (model.getMedia_type() == 1) {
-
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
-                    JSONObject media = new JSONObject();
-
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-
-
-                } else {
-                    copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
-                    JSONObject media = new JSONObject();
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-                }
-
-            }
-        }
-
-        if (feed_media.size() > 0) {
-            feed.setFeed_media(feed_media);
-        } else feed.setFeed_media(new JSONArray());
-
-        if (feed_media.size() > 0) {
-            feed.setFeed_media(feed_media);
-        } else feed.setFeed_media(new JSONArray());
-
-        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
-        Response response = PlaceIdClient.maps(location.getCoordinates());
-        if (response == null) {
-            feed.setLocality_id("unavailable");
-            feed.setArea_id("unavailable");
+    JSONObject insertSuggestion(@RequestBody Suggestion feed, @RequestParam("token_id") long token) throws
+            IOException {
+        if (!FeedValidator.validate(feed)) {
+            return UtilConstants.getResponseStatus(UtilConstants.INVALID_CONTENT);
         } else {
-            String message = new String(response.body().bytes());
-            System.out.println("code" + response.code());
-            System.out.println("codewww" + message);
-            Places placeInfo = new Gson().fromJson(message, Places.class);
+            JSONArray jsonElements = feed.getFeed_media();
+            JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
+            JSONArray feed_media = new JSONArray();
 
-            if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo result_locality = placeInfo.getResults().get(0);
-                PlaceInfo result_area = placeInfo.getResults().get(1);
+            for (int i = 0; i < jsonElements.size(); i++) {
+                Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
+                if (model != null) {
+                    if (model.getMedia_type() == 1) {
 
-                feed.setLocality_id(result_locality.place_id);
-                feed.setArea_id(result_area.place_id);
-            } else {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                        JSONObject media = new JSONObject();
+
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+
+
+                    } else {
+                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                        JSONObject media = new JSONObject();
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+                    }
+
+                }
+            }
+
+            if (feed_media.size() > 0) {
+                feed.setFeed_media(feed_media);
+            } else feed.setFeed_media(new JSONArray());
+
+            if (feed_media.size() > 0) {
+                feed.setFeed_media(feed_media);
+            } else feed.setFeed_media(new JSONArray());
+
+            Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+            Response response = PlaceIdClient.maps(location.getCoordinates());
+            if (response == null) {
                 feed.setLocality_id("unavailable");
                 feed.setArea_id("unavailable");
+            } else {
+                String message = new String(response.body().bytes());
+                System.out.println("code" + response.code());
+                System.out.println("codewww" + message);
+                Places placeInfo = new Gson().fromJson(message, Places.class);
+
+                if (placeInfo.getResults().size() >= 1) {
+                    PlaceInfo result_locality = placeInfo.getResults().get(0);
+                    PlaceInfo result_area = placeInfo.getResults().get(1);
+
+                    feed.setLocality_id(result_locality.place_id);
+                    feed.setArea_id(result_area.place_id);
+                } else {
+                    feed.setLocality_id("unavailable");
+                    feed.setArea_id("unavailable");
+                }
             }
+
+            feed = suggestionRepository.save(feed);
+            PushNotification.push(feed, token);
+            return UtilConstants.getResponseStatus(UtilConstants.OK);
         }
-
-        feed = suggestionRepository.save(feed);
-        PushNotification.push(feed);
-        return feed;
-
 
     }
     /********************************************************************/
@@ -419,80 +438,84 @@ public class FeedController {
     /********************************************************************/
     @RequestMapping(path = "feeds/postFeed4", method = RequestMethod.POST)
     @ResponseBody
-    Event insertEvent(@RequestBody Event feed) throws Exception {
-        JSONArray jsonElements = feed.getFeed_media();
-        JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
-        JSONArray feed_media = new JSONArray();
-
-        for (int i = 0; i < jsonElements.size(); i++) {
-            Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
-            if (model != null) {
-                if (model.getMedia_type() == 1) {
-
-                    try {
-                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        throw new Exception("Error with moving photo...", e);
-                    }
-                    JSONObject media = new JSONObject();
-
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-
-
-                } else {
-                    try {
-                        copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        throw new Exception("Error with moving video...", e);
-                    }
-                    JSONObject media = new JSONObject();
-                    media.put("media_name", model.getPath());
-                    media.put("media_type", model.getMedia_type());
-                    feed_media.add(media);
-                    uploadRepository.delete(model.getId());
-                }
-
-            }
-        }
-        if (feed_media.size() > 0) {
-            feed.setFeed_media(feed_media);
-        } else feed.setFeed_media(new JSONArray());
-
-        Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
-        Response response = PlaceIdClient.maps(location.getCoordinates());
-        if (response == null) {
-            feed.setLocality_id("unavailable");
-            feed.setArea_id("unavailable");
+    JSONObject insertEvent(@RequestBody Event feed, @RequestParam("token_id") long token) throws Exception {
+        if (!FeedValidator.validate(feed)) {
+            return UtilConstants.getResponseStatus(UtilConstants.INVALID_CONTENT);
         } else {
-            String message = null;
-            try {
-                message = response.body().string();
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new Exception("Invalid message for response");
+            JSONArray jsonElements = feed.getFeed_media();
+            JsonArray elements = new JsonParser().parse(jsonElements.toString()).getAsJsonArray();
+            JSONArray feed_media = new JSONArray();
+
+            for (int i = 0; i < jsonElements.size(); i++) {
+                Upload model = uploadRepository.findOne(elements.get(i).getAsJsonObject().get("id").getAsLong());
+                if (model != null) {
+                    if (model.getMedia_type() == 1) {
+
+                        try {
+                            copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            throw new Exception("Error with moving photo...", e);
+                        }
+                        JSONObject media = new JSONObject();
+
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+
+
+                    } else {
+                        try {
+                            copyFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            throw new Exception("Error with moving video...", e);
+                        }
+                        JSONObject media = new JSONObject();
+                        media.put("media_name", model.getPath());
+                        media.put("media_type", model.getMedia_type());
+                        feed_media.add(media);
+                        uploadRepository.delete(model.getId());
+                    }
+
+                }
             }
-            Places placeInfo = new Gson().fromJson(message, Places.class);
+            if (feed_media.size() > 0) {
+                feed.setFeed_media(feed_media);
+            } else feed.setFeed_media(new JSONArray());
 
-            if (placeInfo.getResults().size() >= 1) {
-                PlaceInfo result_locality = placeInfo.getResults().get(0);
-                PlaceInfo result_area = placeInfo.getResults().get(1);
-
-                feed.setLocality_id(result_locality.place_id);
-                feed.setArea_id(result_area.place_id);
-            } else {
+            Location location = new Gson().fromJson(feed.getLocation().toJSONString(), Location.class);
+            Response response = PlaceIdClient.maps(location.getCoordinates());
+            if (response == null) {
                 feed.setLocality_id("unavailable");
                 feed.setArea_id("unavailable");
-            }
-        }
+            } else {
+                String message = null;
+                try {
+                    message = response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    throw new Exception("Invalid message for response");
+                }
+                Places placeInfo = new Gson().fromJson(message, Places.class);
 
-        feed = eventRepository.save(feed);
-        PushNotification.push(feed);
-        return feed;
+                if (placeInfo.getResults().size() >= 1) {
+                    PlaceInfo result_locality = placeInfo.getResults().get(0);
+                    PlaceInfo result_area = placeInfo.getResults().get(1);
+
+                    feed.setLocality_id(result_locality.place_id);
+                    feed.setArea_id(result_area.place_id);
+                } else {
+                    feed.setLocality_id("unavailable");
+                    feed.setArea_id("unavailable");
+                }
+            }
+
+            feed = eventRepository.save(feed);
+            PushNotification.push(feed, token);
+            return UtilConstants.getResponseStatus(UtilConstants.OK);
+        }
 
     }
 

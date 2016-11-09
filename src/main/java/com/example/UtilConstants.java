@@ -1,5 +1,7 @@
 package com.example;
 
+import org.json.simple.JSONObject;
+
 /**
  * Created by mike on 10/31/16.
  */
@@ -43,9 +45,13 @@ public class UtilConstants {
     public static final int LOOP_DETECTED = 508;
     public static final int NETWORK_AUTHENTIFICATION_REQIRED = 511;
 
+    //App Error codes
+    public static final int INVALID_CONTENT = 1001;
 
 
-
-
-
+    public static JSONObject getResponseStatus(int code) {
+        JSONObject response = new JSONObject();
+        response.put("status", code);
+        return response;
+    }
 }

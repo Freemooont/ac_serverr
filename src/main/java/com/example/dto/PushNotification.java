@@ -31,12 +31,13 @@ public class PushNotification {
         }
     }
 
-    private static String buildRequest(String feed, String topic){
+    private static String buildRequest(String feed, String topic, long token){
         String message = "{ \"priority\" : \"high\",\n" +
                 "                \"time_to_live\": 30,\n" +
                 "                \"collapse_key\":\"geo_zone\",\n" +
                 "                \"data\" : {\n" +
                 "            \"array\" :\n" + feed +
+                "        ,\"token_id\":" + token +
                 "        },\n" +
                 "            \"to\" : \"/topics/" + topic + "\"" +
                 "        }";
@@ -45,27 +46,27 @@ public class PushNotification {
         return message;
     }
 
-    public static void push(Event feed) {
+    public static void push(Event feed, long token) {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id()));
+        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id(), token));
         init(body);
     }
 
-    public static void push(Voluntaries feed) {
+    public static void push(Voluntaries feed, long token) {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id()));
+        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id(), token));
         init(body);
     }
 
-    public static void push(Suggestion feed) {
+    public static void push(Suggestion feed, long token) {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id()));
+        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id(), token));
         init(body);
     }
 
-    public static void push(Trouble feed) {
+    public static void push(Trouble feed, long token) {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id()));
+        RequestBody body = RequestBody.create(mediaType, buildRequest(new Gson().toJson(feed), feed.getLocality_id(), token));
         init(body);
     }
 }

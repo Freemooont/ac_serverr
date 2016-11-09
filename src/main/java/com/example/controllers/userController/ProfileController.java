@@ -61,13 +61,12 @@ public class ProfileController {
             if (user_token == null) {
                 user_token = new UserTokens(token, existing.getId());
                 tokenRepository.save(user_token);
-                existing.setMobile_token(String.valueOf(user_token.getId()));
             } else {
                 if (existing.getId() != user_token.getUser_id()) {
                     user_token.setUser_id(existing.getId());
                     tokenRepository.save(user_token);
-                    existing.setMobile_token(String.valueOf(user_token.getId()));
                 }
+                existing.setMobile_token(String.valueOf(user_token.getId()));
             }
 
         }

@@ -28,7 +28,7 @@ public class Voluntaries implements Feed{
     String content;
 
     @Convert(converter = JpaArrayConverter.class)
-    @Column(name = "feed_media",nullable =false)
+    @Column(name = "feed_media",nullable =false, length = 5000)
     JSONArray feed_media;
 
     @Convert(converter = JpaConverterJson.class)
