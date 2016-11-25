@@ -79,5 +79,10 @@ public class ProfileController {
         profileRepository.delete(id);
     }
 
+    @RequestMapping(path = "/getUsersByStepByName", method = RequestMethod.GET)
+    @ResponseBody
+    List<Profile> getUsers(@RequestParam("str") String str,@RequestParam("index") int index, @RequestParam("count") int count){
+        return profileRepository.selectUsers("%" +str+ "%",count, index);
+    }
 
 }

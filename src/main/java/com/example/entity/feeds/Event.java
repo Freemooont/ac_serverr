@@ -2,6 +2,7 @@ package com.example.entity.feeds;
 
 import com.example.configs.JpaArrayConverter;
 import com.example.configs.JpaConverterJson;
+import com.example.entity.palcesActivity.PlaceItem;
 import com.example.entity.user.Profile;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -42,6 +43,9 @@ public class Event implements Feed{
     @Column(name = "locality_id",nullable =false)
     String locality_id="123";
 
+    @Column(name = "place_id", insertable = false, updatable = false)
+    Long place_id;
+
     @Column(name = "datetime_post", nullable = false)
     Timestamp datetime_post;
 
@@ -51,9 +55,16 @@ public class Event implements Feed{
     @Column(name = "datetime_end", nullable = false)
     Timestamp datetime_end;
 
+    @Column(name = "category", nullable = false)
+    Integer category;
+
     @JoinColumn(name = "user_id")
     @ManyToOne
     Profile user;
+
+    @JoinColumn(name = "place_id")
+    @ManyToOne
+    PlaceItem placeItem;
 
     transient Integer users_interested;
 
@@ -62,6 +73,30 @@ public class Event implements Feed{
     transient Integer vote_status;
 
     transient Integer comments_count;
+
+    public Long getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(Long place_id) {
+        this.place_id = place_id;
+    }
+
+    public PlaceItem getPlaceItem() {
+        return placeItem;
+    }
+
+    public void setPlaceItem(PlaceItem placeItem) {
+        this.placeItem = placeItem;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
 
     public Integer getComments_count() {
         return comments_count;
@@ -142,7 +177,7 @@ public class Event implements Feed{
         return users_joined;
     }
 
-    public void setUsers_joined(Integer users_joined) {
+    public void setPostLikes(Integer users_joined) {
         this.users_joined = users_joined;
     }
 

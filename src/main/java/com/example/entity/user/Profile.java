@@ -9,6 +9,11 @@ import javax.persistence.*;
 @Table(name = "cl_user")
 public class Profile {
 
+    public static final transient int ROLE_SITE_ADMIN = 1;
+    public static final transient int ROLE_PLACE_OWNER = 2;
+    public static final transient int ROLE_PLACE_ADMIN = 3;
+    public static final transient int ROLE_PLACE_MODERATOR = 4;
+    public static final transient int ROLE_USER = 5;
 
 
     @Id

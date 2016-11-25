@@ -2,6 +2,7 @@ package com.example.entity.feeds;
 
 import com.example.configs.JpaArrayConverter;
 import com.example.configs.JpaConverterJson;
+import com.example.entity.palcesActivity.PlaceItem;
 import com.example.entity.user.Profile;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,7 +18,7 @@ public class Trouble implements Feed{
     @Column(name = "id",nullable =false)
     Long id;
 
-    @Column(name = "user_id",nullable =false, insertable = false, updatable = false)
+    @Column(name = "user_id",updatable = false, insertable = false)
     Long user_id;
 
     @Column(name = "title",nullable =false)
@@ -37,15 +38,29 @@ public class Trouble implements Feed{
     @Column(name = "area_id",nullable =false)
     String area_id="123";
 
+
     @Column(name = "locality_id",nullable =false)
     String locality_id="123";
+
+    @Column(name = "place_id",insertable = false, updatable = false)
+    Long place_id;
 
     @Column(name = "date_time_post", nullable = false)
     Timestamp datetime_post;
 
+    @Column(name = "category", nullable = false)
+    Integer category;
+
+    @Column(name = "notified_time", nullable = false)
+    Long notified_time;
+
     @JoinColumn(name = "user_id")
     @ManyToOne
     Profile user;
+
+    @JoinColumn(name = "place_id")
+    @ManyToOne
+    PlaceItem placeItem;
 
     transient Integer users_supported;
 
@@ -54,6 +69,39 @@ public class Trouble implements Feed{
     transient Integer vote_status;
 
     transient Integer comments_count;
+
+
+    public Long getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(Long place_id) {
+        this.place_id = place_id;
+    }
+
+    public PlaceItem getPlaceItem() {
+        return placeItem;
+    }
+
+    public void setPlaceItem(PlaceItem placeItem) {
+        this.placeItem = placeItem;
+    }
+
+    public Long getNotified_time() {
+        return notified_time;
+    }
+
+    public void setNotified_time(Long notified_time) {
+        this.notified_time = notified_time;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
 
     public Integer getComments_count() {
         return comments_count;

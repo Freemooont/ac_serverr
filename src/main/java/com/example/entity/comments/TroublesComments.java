@@ -1,5 +1,6 @@
 package com.example.entity.comments;
 
+import com.example.entity.palcesActivity.PlaceItem;
 import com.example.entity.user.Profile;
 
 import javax.persistence.*;
@@ -16,8 +17,11 @@ public class TroublesComments implements Comments{
     @Column(name = "body",nullable =false)
     private String body;
 
-    @Column(name = "user_id",nullable =false)
+    @Column(name = "user_id",nullable =false, updatable = false, insertable = false)
     private Long user_id;
+
+    @Column(name = "place_id", insertable = false, updatable = false)
+    private Long place_id;
 
     @Column(name = "feed_id",nullable =false)
     private Long feed_id;
@@ -29,7 +33,27 @@ public class TroublesComments implements Comments{
     @ManyToOne
     Profile user;
 
+    @JoinColumn(name = "place_id")
+    @ManyToOne
+    private PlaceItem placeItem;
+
     private transient int feed_type;
+
+    public Long getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(Long place_id) {
+        this.place_id = place_id;
+    }
+
+    public PlaceItem getPlaceItem() {
+        return placeItem;
+    }
+
+    public void setPlaceItem(PlaceItem placeItem) {
+        this.placeItem = placeItem;
+    }
 
     public int getFeed_type() {
         return feed_type;

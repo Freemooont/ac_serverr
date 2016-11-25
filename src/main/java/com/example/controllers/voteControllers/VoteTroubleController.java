@@ -67,7 +67,7 @@ public class VoteTroubleController {
         }
     }
 
-    @RequestMapping(path = "/getJoined/{feed_id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/getLikes/{feed_id}", method = RequestMethod.GET)
     @ResponseBody
     JSONObject getJoins(@PathVariable Long feed_id){
 

@@ -45,7 +45,7 @@ public class EventController {
         list = eventRepository.findAll();
         for(Event event:list){
            /* event.setUsers_supported(voteEventRepository.getInterested(event.getId()));
-            event.setUsers_rejected((voteEventRepository.getJoined(event.getId()))/2);*/
+            event.setUsers_rejected((voteEventRepository.getLikes(event.getId()))/2);*/
         }
         return list;
     }
@@ -64,11 +64,11 @@ public class EventController {
 
     /*step - cite feed-uri sa afiseze
     * step_offset - de la al citelea feed sa afiseze*/
-    @RequestMapping(path = "/getbystep/{step}/{step_offset}",method = RequestMethod.GET)
+    /*@RequestMapping(path = "/getbystep/{step}/{step_offset}",method = RequestMethod.GET)
     @ResponseBody
     List<Event> getByStep(@PathVariable int step, @PathVariable int step_offset){
         return eventRepository.returnByStep(step,step_offset);
-    }
+    }*/
 
     @RequestMapping(path = "/delete/{id}",method = RequestMethod.POST)
     public void deleteEvent(@PathVariable Long id){
