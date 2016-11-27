@@ -31,12 +31,11 @@ public class MoveFileTest {
 
     @Test
     public void moveFileUsingStream() throws Exception {
-        assertTrue(MoveFile.moveFile(STORAGE_PATH + File.separator + "temp_media" + File.separator + "test.txt" , STORAGE_PATH + File.separator + "photos" + File.separator));
     }
 
     @Test
     public void moveFile() throws Exception {
-
+        assertTrue(MoveFile.moveFile(STORAGE_PATH + File.separator + "temp_media" + File.separator + "test.txt" , STORAGE_PATH + File.separator + "photos" + File.separator));
     }
 
 }
