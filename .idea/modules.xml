@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-cat.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-cat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-cat_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-cat_main.iml" group="spring-cat" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-cat_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-cat_test.iml" group="spring-cat" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ac_server.iml" filepath="$PROJECT_DIR$/.idea/modules/ac_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ac_server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ac_server_main.iml" group="ac_server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ac_server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ac_server_test.iml" group="ac_server" />
     </modules>
   </component>
 </project>

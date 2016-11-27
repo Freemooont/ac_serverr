@@ -1,12 +1,10 @@
 package com.example.controllers.userController;
 
 import com.example.entity.user.Profile;
-import com.example.entity.user.Settings;
 import com.example.entity.user.UserTokens;
 import com.example.repository.userRepository.ProfileRepository;
 import com.example.repository.userRepository.SettingsRepository;
 import com.example.repository.userRepository.TokenRepository;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +46,7 @@ public class ProfileController {
     @RequestMapping(path = "/profile", method = RequestMethod.POST)
     Profile insert(@RequestBody Profile profile) {
 
-        Profile existing = profileRepository.slectUser(profile.getFb_id());
+        Profile existing = profileRepository.selectUserByFbId(profile.getFb_id());
 
         if (existing == null) {
             existing = profileRepository.save(profile);
@@ -84,5 +82,6 @@ public class ProfileController {
     List<Profile> getUsers(@RequestParam("str") String str,@RequestParam("index") int index, @RequestParam("count") int count){
         return profileRepository.selectUsers("%" +str+ "%",count, index);
     }
+
 
 }

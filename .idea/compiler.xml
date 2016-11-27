@@ -19,6 +19,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ac_server_main" target="1.8" />
+      <module name="ac_server_test" target="1.8" />
       <module name="spring-cat_main" target="1.8" />
       <module name="spring-cat_test" target="1.8" />
     </bytecodeTargetLevel>

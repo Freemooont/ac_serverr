@@ -1,18 +1,17 @@
 <component name="ArtifactManager">
   <artifact type="war" name="Gradle : active-city.war">
-    <output-path>$PROJECT_DIR$/classes/artifacts/spring-cat</output-path>
+    <output-path>$PROJECT_DIR$/classes/artifacts/ac_server</output-path>
     <properties id="gradle-properties">
       <options external-project-path="$PROJECT_DIR$" />
     </properties>
     <root id="archive" name="active-city.war">
-      <element id="javaee-facet-resources" facet="spring-cat_main/web/Web Gradle : active-city.war" />
+      <element id="javaee-facet-resources" facet="ac_server_main/web/Web Gradle : active-city.war" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="spring-cat_main" />
+          <element id="module-output" name="ac_server_main" />
           <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$PROJECT_DIR$/lib/json-simple-1.1.jar" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-data-jpa:1.4.1.RELEASE" />
           <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.7" />
@@ -21,14 +20,14 @@
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-thymeleaf:1.4.1.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-hateoas:1.4.1.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-devtools:1.4.1.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-tomcat:1.4.0.RELEASE" />
           <element id="library" level="project" name="Gradle: junit:junit:4.12" />
           <element id="library" level="project" name="Gradle: com.squareup.okhttp3:okhttp:3.4.1" />
           <element id="library" level="project" name="Gradle: com.squareup.okhttp3:logging-interceptor:3.4.1" />
+          <element id="library" level="project" name="Gradle: org.postgresql:postgresql:9.4.1211.jre7" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter:1.4.1.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-tomcat:1.4.0.RELEASE" />
           <element id="library" level="project" name="Gradle: org.hibernate:hibernate-validator:5.2.4.Final" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.8.3" />
-          <element id="library" level="project" name="Gradle: org.postgresql:postgresql:9.4.1211.jre7" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.3.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.3.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-aop:1.4.1.RELEASE" />
@@ -44,14 +43,14 @@
           <element id="library" level="project" name="Gradle: org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot:1.4.1.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-autoconfigure:1.4.1.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.apache.tomcat.embed:tomcat-embed-core:8.5.5" />
-          <element id="library" level="project" name="Gradle: org.apache.tomcat.embed:tomcat-embed-el:8.5.5" />
-          <element id="library" level="project" name="Gradle: org.apache.tomcat.embed:tomcat-embed-websocket:8.5.5" />
           <element id="library" level="project" name="Gradle: org.hamcrest:hamcrest-core:1.3" />
           <element id="library" level="project" name="Gradle: com.squareup.okio:okio:1.9.0" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-logging:1.4.1.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.3.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.yaml:snakeyaml:1.17" />
+          <element id="library" level="project" name="Gradle: org.apache.tomcat.embed:tomcat-embed-core:8.5.5" />
+          <element id="library" level="project" name="Gradle: org.apache.tomcat.embed:tomcat-embed-el:8.5.5" />
+          <element id="library" level="project" name="Gradle: org.apache.tomcat.embed:tomcat-embed-websocket:8.5.5" />
           <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
           <element id="library" level="project" name="Gradle: org.jboss.logging:jboss-logging:3.3.0.Final" />
           <element id="library" level="project" name="Gradle: com.fasterxml:classmate:1.3.1" />
@@ -85,10 +84,11 @@
           <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
           <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
           <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.1.7" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/json-simple-1.1.jar" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/classes/artifacts/spring-cat/exploded/active-city.war/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/classes/artifacts/ac_server/exploded/active-city.war/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

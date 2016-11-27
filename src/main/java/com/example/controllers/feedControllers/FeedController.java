@@ -102,7 +102,7 @@ public class FeedController {
                 trouble.setUsers_rejected(voteTroubleRepository.getRejected(trouble.getId()));
                 trouble.setVote_status(voteTroubleRepository.getStatusVote(trouble.getId(), trouble.getUser_id()));
                 trouble.setComments_count((troublesCommentsRepository.numberOfComments(trouble.getId())));
-                return (T) trouble ;
+                return (T) trouble;
             case 3:
                 Suggestion suggestion = suggestionRepository.findOne(id);
                 suggestion.setUsers_supported(voteSuggestionRepository.getSupported(suggestion.getId()));
@@ -116,7 +116,7 @@ public class FeedController {
                 event.setPostLikes(voteEventRepository.getJoined(event.getId()));
                 event.setVote_status(voteEventRepository.getStatusVote(event.getId(), event.getUser_id()));
                 event.setComments_count(eventsCommentsRepository.numberOfComments(event.getId()));
-                return (T)event;
+                return (T) event;
             default:
                 return (T) new Object();
 
@@ -210,7 +210,7 @@ public class FeedController {
     @ResponseBody
     List<Voluntaries> getVoluntaries(@RequestParam(value = "user_id", required = false) Long user_id,
                                      @RequestParam(value = "count", required = false) int count,
-                                        @RequestParam(value = "index", required = false) int index) {
+                                     @RequestParam(value = "index", required = false) int index) {
         List<Voluntaries> voluntaries = voluntariesRepository.returnByStep(count, index);
         System.out.println("Catalina home--------------------------------------" + System.getProperty("catalina.base").toString() + "    " + System.getProperty("catalina.home"));
 
@@ -242,22 +242,36 @@ public class FeedController {
                 if (model != null) {
                     if (model.getMedia_type() == 1) {
 
-                        MoveFile.moveFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
-                        JSONObject media = new JSONObject();
-
-                        media.put("media_name", model.getPath());
-                        media.put("media_type", model.getMedia_type());
-                        feed_media.add(media);
-                        uploadRepository.delete(model.getId());
+                        if (MoveFile.moveFile(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath())) {
+                            System.out.println(STORAGE_PATH + "temp_media/" + model.getPath());
+                            System.out.println(STORAGE_PATH + "photos/" + model.getPath());
+                            JSONObject media = new JSONObject();
+                            media.put("media_name", model.getPath());
+                            media.put("media_type", model.getMedia_type());
+                            feed_media.add(media);
+                            uploadRepository.delete(model.getId());
+                        } else {
+                            MoveFile.moveFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                            JSONObject media = new JSONObject();
+                            media.put("media_name", model.getPath());
+                            media.put("media_type", model.getMedia_type());
+                            feed_media.add(media);
+                            uploadRepository.delete(model.getId());
+                        }
 
 
                     } else {
-                        MoveFile.moveFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
-                        JSONObject media = new JSONObject();
-                        media.put("media_name", model.getPath());
-                        media.put("media_type", model.getMedia_type());
-                        feed_media.add(media);
-                        uploadRepository.delete(model.getId());
+                        if (MoveFile.moveFile(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath())) {
+                            MoveFile.moveFile(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "photos/" + model.getPath());
+                        } else {
+
+                            MoveFile.moveFileUsingStream(STORAGE_PATH + "temp_media/" + model.getPath(), STORAGE_PATH + "videos/" + model.getPath());
+                            JSONObject media = new JSONObject();
+                            media.put("media_name", model.getPath());
+                            media.put("media_type", model.getMedia_type());
+                            feed_media.add(media);
+                            uploadRepository.delete(model.getId());
+                        }
                     }
 
                 }
@@ -482,7 +496,7 @@ public class FeedController {
     FeedsCollection getCurrentFeeds(@RequestParam("locality_id") String locality_id, @RequestParam("user_id") Long user_id) {
         FeedsCollection feedsCollection = new FeedsCollection();
         List<Event> events = eventRepository.getAllEvents(locality_id, TimeUnit.DAYS.toMillis(3));
-        for(Event event:events){
+        for (Event event : events) {
             event.setUsers_interested(voteEventRepository.getInterested(event.getId()));
             event.setPostLikes(voteEventRepository.getJoined(event.getId()));
             event.setVote_status(voteEventRepository.getStatusVote(event.getId(), user_id));
@@ -491,7 +505,7 @@ public class FeedController {
         if (events.size() > 0) feedsCollection.setEventFeeds(events);
 
         List<Suggestion> suggestions = suggestionRepository.getAllSuggestion(locality_id);
-        for (Suggestion suggestion: suggestions){
+        for (Suggestion suggestion : suggestions) {
             suggestion.setUsers_supported(voteSuggestionRepository.getSupported(suggestion.getId()));
             suggestion.setUsers_rejected(voteSuggestionRepository.getRejected(suggestion.getId()));
             suggestion.setVote_status(voteSuggestionRepository.getStatusVote(suggestion.getId(), user_id));
@@ -500,7 +514,7 @@ public class FeedController {
         if (suggestions.size() > 0) feedsCollection.setSuggestionFeeds(suggestions);
 
         List<Trouble> troubles = troubleRepository.getAllTroubles(locality_id);
-        for(Trouble trouble: troubles){
+        for (Trouble trouble : troubles) {
             trouble.setUsers_supported(voteTroubleRepository.getSupported(trouble.getId()));
             trouble.setUsers_rejected(voteTroubleRepository.getRejected(trouble.getId()));
             trouble.setVote_status(voteTroubleRepository.getStatusVote(trouble.getId(), user_id));
